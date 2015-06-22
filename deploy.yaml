@@ -1,0 +1,10 @@
+default:
+  root: ''
+  dest: ''
+  files: 'images/*,index.html,install/index.html'
+
+production:
+  bucket: 'json.is'
+
+development:
+  bucket: 'dev.json.is'

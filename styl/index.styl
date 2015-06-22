@@ -1,0 +1,226 @@
+@import nib
+
+@import "ui/styl/reset"
+@import "ui/styl/box-sizing-border-box-all"
+@import "ui/styl/body-typography"
+@import "ui/styl/responsive-helpers"
+@import "ui/styl/subtle-text"
+@import "ui/styl/hr"
+@import "ui/styl/h1-h6"
+@import "ui/styl/messages"
+@import "ui/styl/form"
+@import "ui/styl/icons"
+@import "ui/styl/inputs"
+@import "ui/styl/vertical-align"
+@import "ui/styl/box"
+@import "ui/styl/inline-code"
+@import "ui/styl/top-bar"
+@import "ui/styl/centered-page"
+@import "ui/styl/app-page-header"
+@import "ui/styl/dropdown"
+@import "ui/styl/app-menu"
+@import "ui/styl/app-page"
+@import "ui/styl/login-and-register-form"
+@import "ui/styl/totals-list"
+@import "ui/styl/colors"
+@import "ui/styl/fonts"
+@import "ui/styl/font-smoothing"
+@import "ui/styl/full-width-app-page"
+
+html
+  antialiasedFonts()
+  font-size 16px
+
+body
+  line-height 1.5em
+  font-size 1.1875em
+
+html
+  fullWidthAppPage()
+
+.json-is-page
+  @media pageWithAppNavigationMinWidthQuery
+    min-height 100%
+
+    .centered-page.with-app-navigation
+
+      &, .app-page
+        min-height 100vh // TODO - figure out way to not have to do this
+
+.app-navigation
+  position absolute
+  left 0
+  top 2.8em
+  width appNavigationWidth
+  display none
+
+  @media pageWithAppNavigationMinWidthQuery
+    display block
+
+  html &
+    left 0
+
+.side-navigation-list
+  list-style none
+  padding 0
+  margin 0
+
+  > li
+
+    &.separator
+      height .0625em
+      margin .375em 0
+
+      &.large
+        height 2.5em
+
+    > a
+      display block
+      position relative
+      cursor pointer
+      padding 0.45em 2rem .45em 2rem
+
+      &, &:hover
+        color inherit
+        text-decoration none
+
+      &:hover
+        background #f0f0f0
+
+      &.active
+
+        &, &:hover
+          background #dadada
+
+.json-is-logo
+  color #000
+  text-decoration none
+  font-size 2em
+  letter-spacing -.04em
+  font-weight bold
+  display inline-block
+  line-height .8
+
+  .app-navigation &
+    margin-bottom 1em
+    padding-left 2rem
+
+  &.active
+
+    &, &:hover
+      background #dadada
+
+header
+  text-align center
+
+h1
+  font-size 1.875em
+  font-size 2.25em
+  font-weight normal
+  letter-spacing .01em
+  text-indent @letter-spacing
+
+  a
+
+    &, &:visited
+      color inherit
+      text-decoration none
+
+.share
+  margin 1em auto
+  font-size 0
+  text-align center
+
+  iframe
+    display inline-block
+    vertical-align middle
+    background #eee
+    border-radius 5px
+    margin-left auto
+    margin-right auto
+    border 0
+    height 2.3rem
+
+    &:hover
+      opacity 1
+
+    &.github
+      width 12rem
+      margin-right 1rem
+
+      @media (max-width 36em)
+        width 100%
+        margin-right 0
+        margin-bottom .5rem
+
+    &.twitter
+      width 8.5rem
+
+      @media (max-width 36em)
+        width 100%
+
+h2 a
+
+  &, &:visited
+    color inherit
+
+h1 + h2
+  font-size 1.1875em
+  font-weight normal
+  margin-top 0
+
+h3
+  text-align center
+  font-size 1em
+  font-weight bold
+  text-transform uppercase
+  letter-spacing .25em
+  text-indent @letter-spacing
+  padding-top 3.75em
+  margin 0 auto
+  margin-bottom 1.5em
+
+  @media (max-width 48em)
+    font-weight normal
+
+p
+  margin 1em 0
+
+  &.indented
+    text-indent 1.5em
+
+section
+  margin 2em auto
+  padding 1.5em
+  width 34em
+  max-width 100%
+  border-radius .3125em
+
+  h3
+    padding-top .5em
+
+  > *:first-child
+    margin-top 0
+
+  > *:last-child
+    margin-bottom 0
+
+  &.about
+    background #eee
+
+footer
+  text-align center
+
+  a
+    text-decoration none
+    color brandPink
+
+.code-editor
+  position absolute
+  height 100%
+  width 100%
+
+  #editor
+    font-size 16px
+    height 100%
+    width 100%

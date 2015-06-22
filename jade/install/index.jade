@@ -1,0 +1,150 @@
+include ../../bower_components/ui/jade/typekit
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title install.json is a description of how to include and configure (JavaScript, CSS, and HTML)-based projects into websites
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(href="../css/index.css" rel="stylesheet")
+    link(href="/images/favicon.ico" rel="icon" type="image/x-icon")
+
+    //- Switch to https://github.com/thlorenz/brace?
+    script(src="../js/ace.js")
+    script(src="//fast.eager.io/Njkyd51uIccS.js")
+    +typekit
+
+  body
+    .top-bar.with-app-navigation
+      .centered-page.with-app-navigation
+        .app-navigation
+          a.json-is-logo(href="http://json.is")
+            | JSON.is
+
+          ul.side-navigation-list
+            li
+              a(href="http://bower.json.is") bower.json
+            li
+              a.active(href) install.json
+            li
+              a(href="http://package.json.is") package.json
+            li.separator.large
+            li
+              a(href="http://github.com/EagerIO/json.is") GitHub
+            li
+              a(href="http://json.is") About
+
+    .json-is-page.install-json-is-page
+      .centered-page.with-app-navigation
+        .app-page
+          .code-editor
+            #editor.
+              {
+                "resources": {
+                  "head": [
+                    {
+                      "type": "style",
+                      "src": "./themes/{{ options.theme }}.css"
+                    }
+                  ],
+                  "body": [
+                    {
+                      "type": "script",
+                      "src": "plugin.js"
+                    },
+                    {
+                      "type": "script",
+                      "contents": "Plugin.init(INSTALL_OPTIONS)"
+                    }
+                  ]
+                },
+                "options": {
+                  "properties": {
+                    "headerText": {
+                      "order": 1,
+                      "title": "Header Text",
+                      "description": "Appears above Plugin.",
+                      "type": "string"
+                    },
+                    "location": {
+                      "order": 2,
+                      "title": "Location",
+                      "description": "Choose a location for Plugin.",
+                      "type": "string",
+                      "format": "selector"
+                    },
+                    "theme": {
+                      "order": 3,
+                      "title": "Theme",
+                      "description": "Choose a theme for Plugin.",
+                      "type": "string",
+                      "enum": [
+                        "default",
+                        "flat",
+                        "skeuomorphic",
+                        "colorful",
+                        "minimal"
+                      ],
+                      "enumNames": {
+                        "default": "Default",
+                        "flat-and-trendy": "Flat and Trendy",
+                        "skeuomorphic": "Skeuomorphic",
+                        "colorful": "Colorful",
+                        "minimal":  "Minimal"
+                     },
+                      "default": "default"
+                    },
+                    "color": {
+                      "order": 4,
+                      "title": "Color",
+                      "showIf": {
+                        "theme": "colorful"
+                      },
+                      "description": "Choose a color.",
+                      "type": "string",
+                      "format": "color",
+                      "default": "#e90f92"
+                    }
+                  }
+                }
+              }
+
+          script.
+            var editor = ace.edit('editor');
+            //editor.setOptions({ readOnly: true });
+            editor.setTheme('ace/theme/monokai');
+            editor.setShowPrintMargin(false);
+            editor.getSession().setMode('ace/mode/json');
+            editor.getSession().setTabSize(2);
+            editor.getSession().setUseSoftTabs(true);
+
+            document.getElementById('editor').addEventListener('keyup', function(){
+              var selectionRange, startLine, endLine, content;
+
+              selectionRange = editor.getSelectionRange();
+
+              startLine = selectionRange.start.row;
+              endLine = selectionRange.end.row;
+
+              content = editor.session.getTextRange(selectionRange);
+
+              console.log(selectionRange, startLine, endLine, content);
+            });
+
+          .info(style="display: none")
+            header
+              h1 <a href="http://install.json.is">install.json</a>
+              h2 is a description of how to include and configure (JavaScript, CSS, and HTML)-based projects into websites
+
+            .share
+              iframe(class="twitter" src="//stars.eager.io/twitter/spin/?name=%20&url=http://install.json.is&text=install.json%20is%20a%20description%20of%20how%20to%20include%20and%20configure%20(JavaScript,%20CSS,%20and%20HTML)-based%20projects%20into%20websites.&via=EagerIO")
+
+            section.about
+              h3 About
+
+              p
+                | install.json is a description of how to include and configure (JavaScript, CSS, and HTML)-based projects into websites.
+
+            footer
+              p
+                | install.json.is was created by <a class="eager" href="https://eager.io">Eager</a> and is maintained by the <a href="https://github.com/EagerIO/json.is">open-source community</a>.

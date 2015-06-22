@@ -1,0 +1,37 @@
+include ../bower_components/ui/jade/typekit
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title JSON.is - Open-source intro documentation for common JSON formats including bower.json, package.json, and install.json
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(href="./css/index.css" rel="stylesheet")
+    link(href="/images/favicon.ico" rel="icon" type="image/x-icon")
+
+    script(src="//fast.eager.io/Njkyd51uIccS.js")
+    +typekit
+
+  body
+    .centered-page
+      br
+      br
+      br
+
+      header
+        h1 <a class="json-is-logo" href="http://json.is">JSON.is</a>
+        h2 Open-source intro documentation for common JSON formats.
+
+      .share
+        iframe(class="github" src="//stars.eager.io/github/spin/EagerIO/json.is?name=%20")
+        iframe(class="twitter" src="//stars.eager.io/twitter/spin/?name=%20&url=http://json.is&text=Open-source%20intro%20documentation%20for%20common%20JSON%20formats.&via=EagerIO")
+
+      section.about
+        h3 About
+
+        p
+          | JSON.is is an open-source website built to provide quick, up-to-date documentation for common JSON formats including <code>package.json</code>, <code>bower.json</code>, <code>install.json</code>.
+
+      footer
+        p
+          | <span class="json-is-logo"><small><small><small>JSON.is</small></small></small></span> was created by <a class="eager" href="https://eager.io">Eager</a> and is maintained by the <a href="https://github.com/EagerIO/json.is">open-source community</a>.

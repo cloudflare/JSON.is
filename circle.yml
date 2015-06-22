@@ -1,0 +1,32 @@
+machine:
+  node:
+    version: v0.10.26
+
+dependencies:
+  cache_directories:
+    - "~/nvm/v0.10.26/lib/node_modules"
+    - "~/nvm/v0.10.26/lib/bin"
+    - "~/.npm"
+
+  post:
+    - npm install -g gulp@3.6.2 bower@1.3.8
+    - bower install
+    - gulp build
+    - go get github.com/tools/godep
+    - git clone git@github.com:EagerIO/Stout.git
+    - cd Stout; godep go build -o ../stout src/*
+
+test:
+  override:
+    - echo "No tests!"
+
+deployment:
+  development:
+    branch: dev
+    commands:
+      - ./stout deploy --env development --key $AMAZON_KEY_DEV --secret $AMAZON_SECRET_DEV
+
+  production:
+    branch: master
+    commands:
+      - ./stout deploy --env production --key $AMAZON_KEY_PROD --secret $AMAZON_SECRET_PROD
