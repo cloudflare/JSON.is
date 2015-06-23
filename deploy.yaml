@@ -12,3 +12,7 @@ install:
 package:
   bucket: 'package.json.is'
   root: 'build/package'
+
+bower:
+  bucket: 'bower.json.is'
+  root: 'build/bower'

@@ -27,3 +27,4 @@ deployment:
       - ./stout deploy --env root --key $ROOT_AWS_ACCESS_KEY --secret $ROOT_AWS_SECRET_KEY
       - ./stout deploy --env install --key $INSTALL_AWS_ACCESS_KEY --secret $INSTALL_AWS_SECRET_KEY
       - ./stout deploy --env package --key $PACKAGE_AWS_ACCESS_KEY --secret $PACKAGE_AWS_SECRET_KEY
+      - ./stout deploy --env bower --key $BOWER_AWS_ACCESS_KEY --secret $BOWER_AWS_SECRET_KEY
