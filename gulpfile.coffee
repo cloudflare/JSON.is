@@ -3,6 +3,7 @@ browserify = require 'browserify'
 buffer     = require 'gulp-buffer'
 coffee     = require 'gulp-coffee'
 concat     = require 'gulp-concat'
+connect    = require 'gulp-connect'
 fs         = require 'fs'
 gulp       = require 'gulp'
 gulpif     = require 'gulp-if'
@@ -32,25 +33,48 @@ STYLUS_OPTS =
   ]
 
 gulp.task 'js', ->
-  gulp.src(['./coffee/**/*.coffee'])
-    .pipe(gulpif(/[.]coffee$/, coffee().on('error', handleError)))
-    .pipe(gulp.dest('./js'))
+  browserify({
+    entries: [
+      './coffee/app.coffee'
+    ]
+    extensions: ['.coffee']
+  })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./build/js'))
 
 gulp.task 'css', ->
   gulp.src('./styl/**/*.styl')
     .pipe(stylus(STYLUS_OPTS))
       .on('error', handleError)
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest('./build/css'))
 
 gulp.task 'html', ->
   gulp.src('./jade/**/*.jade')
     .pipe(jade().on('error', handleError))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./build'))
 
 gulp.task 'watch', ->
   gulp.watch ['./coffee/**'], ['js']
   gulp.watch ['./styl/**'], ['css']
   gulp.watch ['./jade/**'], ['html']
+
+gulp.task 'connect', ->
+  connect.server
+    root: ['build']
+    port: 9002
+    livereload:
+      port: 35133
+    connect:
+      redirect: false
+
+    middleware: (conn, o) ->
+      [(req, res, next) ->
+        if not /^[^?]+\./.test(req.url)
+          req.url = ''
+        next()
+        return
+      ]
 
 gulp.task 'build', [
   'js'
@@ -61,4 +85,5 @@ gulp.task 'build', [
 gulp.task 'default', [
   'build'
   'watch'
+  'connect'
 ]

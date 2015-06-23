@@ -4,6 +4,11 @@
   "engines": {
     "node": ">=0.10.28"
   },
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
+  },
   "devDependencies": {
     "event-stream": "^3.1.7",
     "fs": "0.0.2",
@@ -28,6 +33,7 @@
     "vinyl-source-stream": "^1.0.0",
     "gulp-uglify": "^1.0.1",
     "browserify": "^6.2.0",
-    "coffee-script": "^1.8.0"
+    "coffee-script": "^1.8.0",
+    "coffeeify": "^1.1.0"
   }
 }

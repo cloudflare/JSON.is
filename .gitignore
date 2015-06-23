@@ -2,7 +2,6 @@
 node_modules
 bower_components/
 !js/smart-underline.js
-js/
-css/
+build/
 *.html
 diagram/*.html
