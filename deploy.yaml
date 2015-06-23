@@ -1,10 +1,14 @@
 default:
-  root: ''
-  dest: ''
-  files: 'images/*,index.html,install/index.html'
+  files: 'images/*,index.html'
 
-production:
+root:
   bucket: 'json.is'
+  root: 'build'
 
-development:
-  bucket: 'dev.json.is'
+install:
+  bucket: 'install.json.is'
+  root: 'build/install'
+
+package:
+  bucket: 'package.json.is'
+  root: 'build/package'
