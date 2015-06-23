@@ -8,7 +8,7 @@ getItemAt = (src, row, col) ->
     pos += lines[r].length
   pos += col
 
-  src = "x = " + src
+  src = 'x = ' + src
   pos += 4
 
   ast = acorn.parse src,

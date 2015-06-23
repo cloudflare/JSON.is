@@ -18,7 +18,7 @@ test = """
 console.log getItemAt(test, 5, 12)
 
 document.addEventListener 'DOMContentLoaded', ->
-  editor = ace.edit('editor')
+  editor = ace.edit 'editor'
   editor.setTheme 'ace/theme/monokai'
   editor.setShowPrintMargin false
   editor.getSession().setMode 'ace/mode/json'
@@ -35,3 +35,11 @@ document.addEventListener 'DOMContentLoaded', ->
     endLine = selectionRange.end.row
     content = editor.session.getTextRange(selectionRange)
     console.log selectionRange, startLine, endLine, content
+
+    row = selectionRange.start.row
+    col = selectionRange.start.column
+    src = editor.getSession().getValue()
+
+    item = getItemAt src, row, col
+
+    console.log 'item', item
