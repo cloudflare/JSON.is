@@ -1,5 +1,6 @@
 ace = require('brace')
 require('brace/mode/javascript')
+require('brace/mode/json')
 require('brace/theme/monokai')
 
 {getItemAt} = require('./parse.coffee')
