@@ -68,14 +68,6 @@ gulp.task 'connect', ->
     connect:
       redirect: false
 
-    middleware: (conn, o) ->
-      [(req, res, next) ->
-        if not /^[^?]+\./.test(req.url)
-          req.url = ''
-        next()
-        return
-      ]
-
 gulp.task 'build', [
   'js'
   'css'

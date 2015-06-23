@@ -9,8 +9,6 @@ html
     link(href="../css/index.css" rel="stylesheet")
     link(href="/images/favicon.ico" rel="icon" type="image/x-icon")
 
-    //- Switch to https://github.com/thlorenz/brace?
-    script(src="../js/ace.js")
     script(src="//fast.eager.io/Njkyd51uIccS.js")
     +typekit
 
@@ -109,28 +107,6 @@ html
                 }
               }
 
-          script.
-            var editor = ace.edit('editor');
-            //editor.setOptions({ readOnly: true });
-            editor.setTheme('ace/theme/monokai');
-            editor.setShowPrintMargin(false);
-            editor.getSession().setMode('ace/mode/json');
-            editor.getSession().setTabSize(2);
-            editor.getSession().setUseSoftTabs(true);
-
-            document.getElementById('editor').addEventListener('keyup', function(){
-              var selectionRange, startLine, endLine, content;
-
-              selectionRange = editor.getSelectionRange();
-
-              startLine = selectionRange.start.row;
-              endLine = selectionRange.end.row;
-
-              content = editor.session.getTextRange(selectionRange);
-
-              console.log(selectionRange, startLine, endLine, content);
-            });
-
           .info(style="display: none")
             header
               h1 <a href="http://install.json.is">install.json</a>
@@ -148,3 +124,5 @@ html
             footer
               p
                 | install.json.is was created by <a class="eager" href="https://eager.io">Eager</a> and is maintained by the <a href="https://github.com/EagerIO/json.is">open-source community</a>.
+
+    script(src="../js/app.js")
