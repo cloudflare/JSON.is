@@ -5,7 +5,7 @@ getItemAt = (src, row, col) ->
   pos = 0
   lines = src.split '\n'
   for r in [0...row]
-    pos += lines[r].length
+    pos += lines[r].length + 1
   pos += col
 
   src = 'x = ' + src
@@ -22,7 +22,7 @@ getItemAt = (src, row, col) ->
   Found = (@path, @node) ->
 
   try
-    walk = (start, path='') ->
+    check = (start, path='') ->
       if start?.key?.value?
         if path
           path += '.'
@@ -33,19 +33,19 @@ getItemAt = (src, row, col) ->
 
       switch start.type
         when 'Property'
-          walk(start.value, path)
+          check(start.value, path)
 
         when 'ObjectExpression'
           for prop in start.properties
-            walk(prop, path)
+            check(prop, path)
 
         when 'ArrayExpression'
           if path
             path += '.'
           for el, i in start.elements
-            walk(el, path + i)
+            check(el, path + i)
 
-    walk root
+    check root
   catch e
     if e instanceof Found
       return e
