@@ -27,16 +27,41 @@
 @import "ui/styl/font-smoothing"
 @import "ui/styl/full-width-app-page"
 
+//@import "ui/styl/code-colors"
+codeBlue = #3b447f
+codePurple = #633573
+codeGold = #8b6253
+codeTeal = #246a7b
+codeRed = #b34651
+codePink = #ae2f7d
+codeLightPink = #bcb2c0
+
 html
   antialiasedFonts()
   font-size 16px
 
 body
+  height 100%
   line-height 1.5em
   font-size 1.1875em
 
-html
-  fullWidthAppPage()
+.centered-page.with-app-navigation
+  height 100%
+  width 100%
+  padding-left appNavigationWidth - 1em
+  padding-right 0
+
+.app-navigation
+  width appNavigationWidth - 3em
+  left 2em
+
+.global-messages
+  left appNavigationWidth - (3em / 2)
+
+.app-page
+  position relative
+  min-height 100%
+  padding 0
 
 .json-is-page
   @media pageWithAppNavigationMinWidthQuery
@@ -219,8 +244,90 @@ footer
   position absolute
   height 100%
   width 100%
+  z-index 10
 
   #editor
     font-size 16px
     height 100%
     width 100%
+
+  .code-overlay
+    position absolute
+    pointer-events none
+    z-index 5
+    top 0
+    right 0
+    width 50%
+    width 400px
+    padding 0 21px 21px 21px
+    max-height 80vh
+    overflow hidden
+    font-size .8em
+    line-height 1.3em
+    background #f7f7f7
+
+    > *:first-child
+      margin-top 0
+
+    > *:last-child
+      margin-bottom 0
+
+// Ace editor styles
+
+html .ace-tm
+  color #000
+
+  &, .ace_gutter
+    background #eee
+
+  .ace_gutter
+    color #a5a5a5
+
+    .ace_fold-widget
+      transition opacity .2s ease
+
+    &:not(:hover) .ace_fold-widget
+      opacity .5
+
+  .ace_gutter-active-line, .ace_marker-layer .ace_active-line
+    background #f7f7f7
+
+  .ace_gutter-active-line
+    border-left 8px solid #ccc
+
+  .ace_cursor
+    color #000
+
+  .ace_marker-layer
+
+    .ace_selection
+      background #e0dae0
+
+    .ace_step
+      background rgb(102, 82, 0)
+
+    .ace_bracket
+      margin -1px 0 0 -1px
+      border 1px solid #000
+
+    .ace_selected-word
+      background #fafaff
+      border 1px solid #000
+
+  .ace_fold
+    background-color darken(codePink, 20%)
+    border-color rgba(#000, .4)
+
+  .ace_string
+    color codeBlue
+
+  .ace_indent-guide
+    background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC") right repeat-y
+    opacity .2
+
+  .ace_constant.ace_numeric
+    color #5100db
+    color codeBlue
+
+  .ace_entity.ace_name.ace_function, .ace_entity.ace_other, .ace_entity.ace_other.ace_attribute-name, .ace_variable
+    color codePink
