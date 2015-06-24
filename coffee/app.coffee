@@ -295,6 +295,8 @@ INSTALL_JSON_CONTEXT =
 editorId = 'editor'
 editorEl = document.getElementById editorId
 
+overlayEl = document.querySelector '.code-overlay'
+
 editor = ace.edit editorId
 editor.setTheme 'ace/theme/textmate'
 editor.setShowPrintMargin false
@@ -319,32 +321,36 @@ selection.on 'changeCursor', ->
   col = selectionRange.start.column
   src = editorSession.getValue()
 
-  positionCodeOverlay row
-  setCodeOverlayDisplay selectionRange
-
   try
     item = getItemAt src, row, col
+    itemErrored = false
     setEditorOverlayContext item.path
     #console.log item.path
+
+  catch
+    itemErrored = true
+
+  positionCodeOverlay row
+  setCodeOverlayDisplay itemErrored, selectionRange
 
 simplifyArrayPaths = (path) ->
   path.replace /\.\d?\./, '.0.'
 
-setCodeOverlayDisplay = (selectionRange) ->
-  if selectionRange.start.column is selectionRange.end.column and selectionRange.start.row is selectionRange.end.row
-    document.querySelector('.code-overlay').style.display = 'block'
+setCodeOverlayDisplay = (itemErrored, selectionRange) ->
+  if not itemErrored and selectionRange.start.column is selectionRange.end.column and selectionRange.start.row is selectionRange.end.row
+    overlayEl.style.display = 'block'
   else
-    document.querySelector('.code-overlay').style.display = 'none'
+    overlayEl.style.display = 'none'
 
 positionCodeOverlay = (row) ->
   editorLineHeight = getEditorLineHeight()
 
-  document.querySelector('.code-overlay').style.top = "#{ (row + 1) * editorLineHeight }px"
+  overlayEl.style.top = "#{ (row + 1) * editorLineHeight }px"
 
 setEditorOverlayContext = (path) ->
   contextPath = simplifyArrayPaths path
   contextHTMLFn = INSTALL_JSON_CONTEXT[contextPath] or INSTALL_JSON_CONTEXT['default']
-  document.querySelector('.code-overlay').innerHTML = contextHTMLFn()
+  overlayEl.innerHTML = contextHTMLFn()
 
 positionCodeOverlay 0
 setEditorOverlayContext 'default'
