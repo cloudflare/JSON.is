@@ -17,6 +17,7 @@
 @import "ui/styl/top-bar"
 @import "ui/styl/centered-page"
 @import "ui/styl/app-page-header"
+@import "ui/styl/app-navigation"
 @import "ui/styl/dropdown"
 @import "ui/styl/app-menu"
 @import "ui/styl/app-page"
@@ -38,57 +39,33 @@ codeLightPink = #bcb2c0
 
 html
   antialiasedFonts()
+  fullWidthAppPage()
   font-size 16px
 
-body
-  height 100%
-  line-height 1.5em
-  font-size 1.1875em
-
-.centered-page.with-app-navigation
-  height 100%
-  width 100%
-  padding-left appNavigationWidth - 1em
-  padding-right 0
-
-.app-navigation
-  width appNavigationWidth - 3em
-  left 2em
-
-.global-messages
-  left appNavigationWidth - (3em / 2)
-
-.app-page
-  position relative
-  min-height 100%
-  padding 0
-
-.json-is-page
   @media pageWithAppNavigationMinWidthQuery
-    min-height 100%
+    .json-is-page
+      min-height 100%
 
-    .centered-page.with-app-navigation
+      .centered-page.with-app-navigation
 
-      &, .app-page
-        min-height 100vh // TODO - figure out way to not have to do this
+        &, .app-page
+          min-height 100vh // TODO - figure out way to not have to do this
 
-.app-navigation
-  position absolute
-  left 0
-  top 2.8em
-  width appNavigationWidth
-  display none
+    .app-navigation
+      left 0
+      width 17em
 
-  @media pageWithAppNavigationMinWidthQuery
-    display block
+  // TODO - remove
+  @media pageWithoutAppNavigationMaxWidthQuery
+    display none
 
-  html &
-    left 0
-
-.side-navigation-list
+.app-navigation .side-navigation-list
   list-style none
   padding 0
   margin 0
+
+  line-height 1.5em
+  font-size 1.1875em
 
   > li
 
@@ -262,7 +239,6 @@ footer
     padding 0 21px 21px 21px
     max-height 80vh
     overflow hidden
-    font-size .8em
     line-height 1.3em
     background #f7f7f7
 
