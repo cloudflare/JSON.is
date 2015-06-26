@@ -228,25 +228,52 @@ footer
     height 100%
     width 100%
 
+  .code-property-path
+    position fixed
+    bottom 0
+    right 0
+    background #f7f7f7
+    padding 5px
+    color subtle-text
+    font-size .8em
+
   .code-overlay
     position absolute
-    pointer-events none
     z-index 5
     top 0
     right 0
     width 50%
     width 400px
     padding 0 21px 21px 21px
-    max-height 80vh
+    max-height 100%
     overflow hidden
     line-height 1.3em
     background #f7f7f7
+
+    &:empty
+      display none !important
+
+    h4
+      font-weight bold
+
+    pre
+      line-height 1.1em
+      font-size .85em
+      background-color #eee
+      padding 1em
+      color #222
 
     > *:first-child
       margin-top 0
 
     > *:last-child
       margin-bottom 0
+
+    &
+      pointer-events none
+
+      pre, code, a
+        pointer-events all
 
 // Ace editor styles
 
