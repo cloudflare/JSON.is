@@ -192,7 +192,7 @@ INSTALL_JSON_CONTEXT =
   'options.properties.*.type': -> '''
     <h4>Option Type</h4>
 
-    <p>Primitive option types</p>
+    <h5>Primitive option types</h5>
 
     <p>Element to be placed on the end-user’s website</p>
 
