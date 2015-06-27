@@ -415,8 +415,6 @@ editorSession.setTabSize 2
 editorSession.setUseSoftTabs true
 editorSession.setUseWrapMode true
 
-lastSelectionRangeRow = undefined
-
 selection = editorSession.getSelection()
 selection.on 'changeCursor', ->
   selectionRange = editor.getSelectionRange()
@@ -424,8 +422,6 @@ selection.on 'changeCursor', ->
   row = selectionRange.start.row
   col = selectionRange.start.column
   src = editorSession.getValue()
-
-  lastSelectionRangeRow = row
 
   try
     item = getItemAt src, row, col
@@ -436,10 +432,10 @@ selection.on 'changeCursor', ->
   catch
     itemErrored = true
 
-  positionCodeOverlay row
+  positionCodeOverlay()
   setCodeContextDisplay itemErrored, selectionRange
 
-window.addEventListener 'resize', -> positionCodeOverlay(lastSelectionRangeRow)
+window.addEventListener 'resize', -> positionCodeOverlay()
 
 document.documentElement.classList.add 'page-loaded'
 
@@ -460,24 +456,21 @@ setCodeContextDisplay = (itemErrored, selectionRange) ->
     overlayEl.style.display = 'none'
     propertyPathEl.style.display = 'none'
 
-positionCodeOverlay = (row) ->
-  try
-    rowEl = editorEl.querySelector ".ace_content .ace_text-layer .ace_line_group:nth-child(#{ row + 1 })"
-
-    if parseInt(rowEl.style.height, 10) is 21
+positionCodeOverlay = ->
+  position = ->
+    rowEl = editorEl.querySelector '.ace_content .ace_marker-layer .ace_active-line'
+    if rowEl
       overlayEl.style.top = rowEl.offsetTop + 'px'
 
-    else
-      setTimeout ->
-        rowEl = editorEl.querySelector ".ace_content .ace_marker-layer .ace_active-line"
-        overlayEl.style.top = rowEl.offsetTop + 'px'
-      , 50
+  position()
+  setTimeout position, 50
 
 setEditorOverlayContext = (item) ->
   item = path: 'default' if not item.path
   contextPath = simplifyArrayPaths item.path
   contextHTML = INSTALL_JSON_CONTEXT[contextPath]?(item) or ''
-  overlayEl.innerHTML = contextHTML
+  setTimeout ->
+    overlayEl.innerHTML = contextHTML
 
 positionCodeOverlay 0
 setEditorOverlayContext 'default'
