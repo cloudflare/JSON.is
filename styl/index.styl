@@ -81,12 +81,22 @@ html
   text-align center
   line-height 100vh
 
+  .page-loader-inner
+    width 20em
+    height 2em
+    max-width 100%
+    margin auto
+    text-align center
+
   .loading-dots
     margin-left -1.5em
 
   html.page-loaded &
     pointer-events none
     opacity 0
+
+    *
+      animation-play-state paused
 
 .app-navigation .side-navigation-list
   list-style none
