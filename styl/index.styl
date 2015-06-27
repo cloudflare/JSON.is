@@ -7,7 +7,10 @@
 @import "ui/styl/subtle-text"
 @import "ui/styl/hr"
 @import "ui/styl/h1-h6"
+@import "ui/styl/links-brand-colored"
+@import "ui/styl/more-links-and-buttons"
 @import "ui/styl/messages"
+@import "ui/styl/loading-dots"
 @import "ui/styl/form"
 @import "ui/styl/icons"
 @import "ui/styl/inputs"
@@ -41,6 +44,7 @@ html
   antialiasedFonts()
   fullWidthAppPage()
   font-size 16px
+  background #eee
 
   @media pageWithAppNavigationMinWidthQuery
     .json-is-page
@@ -53,11 +57,36 @@ html
 
     .app-navigation
       left 0
-      width 17em
+      width 15em
+      top 0
+      padding-top 2.8em
+      padding-right 0
+      background-color #111
+      background-image linear-gradient(#111, #1f0514)
+      height 100vh
 
   // TODO - remove
   @media pageWithoutAppNavigationMaxWidthQuery
     display none
+
+.page-loader
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  background #eee
+  z-index 999
+  transition opacity .15s ease
+  text-align center
+  line-height 100vh
+
+  .loading-dots
+    margin-left -1.5em
+
+  html.page-loaded &
+    pointer-events none
+    opacity 0
 
 .app-navigation .side-navigation-list
   list-style none
@@ -83,19 +112,20 @@ html
       padding 0.45em 2rem .45em 2rem
 
       &, &:hover
-        color inherit
+        color rgba(#fff, .8)
         text-decoration none
 
       &:hover
-        background #f0f0f0
+        background rgba(#fff, .1)
 
       &.active
 
         &, &:hover
-          background #dadada
+          background #fff
+          color #000
 
 .json-is-logo
-  color #000
+  color #fff
   text-decoration none
   font-size 2em
   letter-spacing -.04em
@@ -219,20 +249,21 @@ footer
 
 .code-editor
   position absolute
-  height 100%
   width 100%
   z-index 10
 
   #editor
-    font-size 16px
+    font-size 16px // Note: this number is crucial to the JS
+    line-height 21px // Note: this number is crucial to the JS
     height 100%
     width 100%
+    max-width calc(100% - 400px)
 
   .code-property-path
     position fixed
     bottom 0
     right 0
-    background #f7f7f7
+    background #fff
     padding 5px
     color subtle-text
     font-size .8em
@@ -244,16 +275,19 @@ footer
     right 0
     width 50%
     width 400px
-    padding 0 21px 21px 21px
-    max-height 100%
+    padding 21px
     overflow hidden
     line-height 1.3em
-    background #f7f7f7
+    background #fff
 
     &:empty
       display none !important
 
     h4
+      font-size 1.2em
+      margin-bottom 0.8333em
+
+    h4, h5
       font-weight bold
 
     pre
@@ -268,12 +302,6 @@ footer
 
     > *:last-child
       margin-bottom 0
-
-    &
-      pointer-events none
-
-      pre, code, a
-        pointer-events all
 
 // Ace editor styles
 
@@ -293,10 +321,7 @@ html .ace-tm
       opacity .5
 
   .ace_gutter-active-line, .ace_marker-layer .ace_active-line
-    background #f7f7f7
-
-  .ace_gutter-active-line
-    border-left 8px solid #ccc
+    background #fff
 
   .ace_cursor
     color #000

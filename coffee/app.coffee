@@ -388,12 +388,9 @@ editorSession = editor.getSession()
 editorSession.setMode 'ace/mode/json'
 editorSession.setTabSize 2
 editorSession.setUseSoftTabs true
+editorSession.setUseWrapMode true
 
-getEditorLineHeight = ->
-  height = 21
-  try
-    height = parseInt editorEl.querySelector('.ace_layer.ace_text-layer .ace_line').style.height, 10
-  return height
+lastSelectionRangeRow = undefined
 
 selection = editorSession.getSelection()
 selection.on 'changeCursor', ->
@@ -402,6 +399,8 @@ selection.on 'changeCursor', ->
   row = selectionRange.start.row
   col = selectionRange.start.column
   src = editorSession.getValue()
+
+  lastSelectionRangeRow = row
 
   try
     item = getItemAt src, row, col
@@ -414,6 +413,10 @@ selection.on 'changeCursor', ->
 
   positionCodeOverlay row
   setCodeContextDisplay itemErrored, selectionRange
+
+window.addEventListener 'resize', -> positionCodeOverlay(lastSelectionRangeRow)
+
+document.documentElement.classList.add 'page-loaded'
 
 simplifyArrayPaths = (path) ->
   path = path.replace /\.\d$/, '.0'
@@ -433,9 +436,16 @@ setCodeContextDisplay = (itemErrored, selectionRange) ->
     propertyPathEl.style.display = 'none'
 
 positionCodeOverlay = (row) ->
-  editorLineHeight = getEditorLineHeight()
+  rowEl = editorEl.querySelector ".ace_content .ace_text-layer .ace_line_group:nth-child(#{ row + 1 })"
 
-  overlayEl.style.top = "#{ (row + 1) * editorLineHeight }px"
+  if parseInt(rowEl.style.height, 10) is 21
+    overlayEl.style.top = rowEl.offsetTop + 'px'
+
+  else
+    setTimeout ->
+      rowEl = editorEl.querySelector ".ace_content .ace_marker-layer .ace_active-line"
+      overlayEl.style.top = rowEl.offsetTop + 'px'
+    , 50
 
 setEditorOverlayContext = (item) ->
   item = path: 'default' if not item.path
