@@ -46,6 +46,9 @@ html
   font-size 16px
   background #eee
 
+  .app-page:before
+    display none
+
   @media pageWithAppNavigationMinWidthQuery
     .json-is-page
       min-height 100%
@@ -54,6 +57,9 @@ html
 
         &, .app-page
           min-height 100vh // TODO - figure out way to not have to do this
+
+        .app-page:before
+          display none
 
     .app-navigation
       left 0
