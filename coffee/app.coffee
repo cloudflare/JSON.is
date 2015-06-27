@@ -436,16 +436,17 @@ setCodeContextDisplay = (itemErrored, selectionRange) ->
     propertyPathEl.style.display = 'none'
 
 positionCodeOverlay = (row) ->
-  rowEl = editorEl.querySelector ".ace_content .ace_text-layer .ace_line_group:nth-child(#{ row + 1 })"
+  try
+    rowEl = editorEl.querySelector ".ace_content .ace_text-layer .ace_line_group:nth-child(#{ row + 1 })"
 
-  if parseInt(rowEl.style.height, 10) is 21
-    overlayEl.style.top = rowEl.offsetTop + 'px'
-
-  else
-    setTimeout ->
-      rowEl = editorEl.querySelector ".ace_content .ace_marker-layer .ace_active-line"
+    if parseInt(rowEl.style.height, 10) is 21
       overlayEl.style.top = rowEl.offsetTop + 'px'
-    , 50
+
+    else
+      setTimeout ->
+        rowEl = editorEl.querySelector ".ace_content .ace_marker-layer .ace_active-line"
+        overlayEl.style.top = rowEl.offsetTop + 'px'
+      , 50
 
 setEditorOverlayContext = (item) ->
   item = path: 'default' if not item.path
