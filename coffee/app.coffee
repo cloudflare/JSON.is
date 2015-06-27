@@ -9,6 +9,31 @@ INSTALL_JSON_CONTEXT =
     <h4>install.json</h4>
 
     <p>install.json is a description of how to include and configure (JavaScript, CSS, and HTML)-based projects into websites.</p>
+
+    <p>install.json has two top-level properties, <code>resources</code> and <code>options</code>. Essentially resources are files included into the page and options are configurations for them.</p>
+
+    <p>Here’s a simple example of an install.json file which includes one JS file and has one color option:</p>
+
+    <pre><code>{
+      "resources": {
+        "head": [
+          {
+            "type": "script",
+            "src": "./file.js"
+          }
+        ]
+      },
+      "options": {
+        "properties": {
+          "color": {
+            "title": "Color",
+            "type": "string",
+            "format": "color",
+            "default": "#e90f92"
+          }
+        }
+      }
+    }</code></pre>
   '''
 
   'resources': -> '''
