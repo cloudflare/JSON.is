@@ -20,32 +20,28 @@ block html
           .loading-dots.dark-gray
             | <i></i><i></i><i></i><i></i>
 
-      .top-bar.with-app-navigation
-        .centered-page.with-app-navigation
-          .app-navigation
-            a.json-is-logo(href="http://json.is")
-              | JSON.is
+      .navigation
+        a.json-is-logo(href="http://json.is")
+          | JSON.is
 
-            ul.side-navigation-list
-              li
-                a(href="http://bower.json.is") bower.json
-              li
-                a(href="http://install.json.is") install.json
-              li
-                a(href="http://package.json.is") package.json
-              li.separator.large
-              li
-                a(href="http://github.com/EagerIO/json.is") GitHub
-              li
-                a(href="http://json.is") About
+        ul.side-navigation-list
+          li
+            a(class=(format === 'bower' ? 'active' : '') href="http://bower.json.is") bower.json
+          li
+            a(class=(format === 'install' ? 'active' : '') href="http://install.json.is") install.json
+          li
+            a(class=(format === 'package' ? 'active' : '') href="http://package.json.is") package.json
+          li.separator.large
+          li
+            a(href="http://github.com/EagerIO/json.is") GitHub
+          li
+            a(href="http://json.is") About
 
-      .json-is-page
-        .centered-page.with-app-navigation
-          .app-page
-            .code-editor
-              block code
+      .page
+        .code-editor
+          block code
 
-              .code-overlay
-              .code-property-path
+          .code-overlay
+          .code-property-path
 
       script(src="../js/app.js")

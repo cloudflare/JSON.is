@@ -9,27 +9,12 @@
 @import "ui/styl/h1-h6"
 @import "ui/styl/links-brand-colored"
 @import "ui/styl/more-links-and-buttons"
-@import "ui/styl/messages"
 @import "ui/styl/loading-dots"
-@import "ui/styl/form"
-@import "ui/styl/icons"
-@import "ui/styl/inputs"
-@import "ui/styl/vertical-align"
 @import "ui/styl/box"
 @import "ui/styl/inline-code"
-@import "ui/styl/top-bar"
-@import "ui/styl/centered-page"
-@import "ui/styl/app-page-header"
-@import "ui/styl/app-navigation"
-@import "ui/styl/dropdown"
-@import "ui/styl/app-menu"
-@import "ui/styl/app-page"
-@import "ui/styl/login-and-register-form"
-@import "ui/styl/totals-list"
 @import "ui/styl/colors"
 @import "ui/styl/fonts"
 @import "ui/styl/font-smoothing"
-@import "ui/styl/full-width-app-page"
 
 //@import "ui/styl/code-colors"
 codeBlue = #3b447f
@@ -40,52 +25,32 @@ codeRed = #b34651
 codePink = #ae2f7d
 codeLightPink = #bcb2c0
 
+navigationWidth = 15em
+smallNavigationWidth = 13em
+codeOverlayWidth = 25em
+minimumEditorWidth = 25em
+editorWithCodeOverlayMinWidthQuery = "(min-width: " + (navigationWidth + codeOverlayWidth + minimumEditorWidth) + ")"
+editorWithCodeOverlayMaxWidthQuery = "(max-width: " + (navigationWidth + codeOverlayWidth + minimumEditorWidth - .0625em) + ")"
+
 html
   antialiasedFonts()
-  fullWidthAppPage()
   font-size 16px
   background #eee
-
-  .app-page:before
-    display none
-
-  @media pageWithAppNavigationMinWidthQuery
-    .json-is-page
-      min-height 100%
-
-      .centered-page.with-app-navigation
-
-        &, .app-page
-          min-height 100vh // TODO - figure out way to not have to do this
-
-        .app-page:before
-          display none
-
-    .app-navigation
-      left 0
-      width 15em
-      top 0
-      padding-top 2.8em
-      padding-right 0
-      background-color #111
-      background-image linear-gradient(#111, #1f0514)
-      height 100vh
-
-  // TODO - remove
-  @media pageWithoutAppNavigationMaxWidthQuery
-    display none
 
 .page-loader
   position fixed
   top 0
   right 0
   bottom 0
-  left 15em
+  left navigationWidth
   background #eee
   z-index 999
   transition opacity .15s ease
   text-align center
   line-height 100vh
+
+  @media editorWithCodeOverlayMaxWidthQuery
+    left smallNavigationWidth
 
   .page-loader-inner
     width 20em
@@ -104,11 +69,24 @@ html
     *
       animation-play-state paused
 
-.app-navigation .side-navigation-list
+.navigation
+  position fixed
+  top 0
+  left 0
+  bottom 0
+  width navigationWidth
+  padding-top 2.8em
+  background-color #111
+  background-image linear-gradient(#111, #1f0514)
+  z-index 5
+
+  @media editorWithCodeOverlayMaxWidthQuery
+    width smallNavigationWidth
+
+ul.side-navigation-list
   list-style none
   padding 0
   margin 0
-
   line-height 1.5em
   font-size 1.1875em
 
@@ -149,122 +127,20 @@ html
   display inline-block
   line-height .8
 
-  .app-navigation &
+  .navigation &
     margin-bottom 1em
     padding-left 2rem
 
-  &.active
+.page
+  position relative
+  padding-left navigationWidth
+  background #eee
 
-    &, &:hover
-      background #dadada
-
-header
-  text-align center
-
-h1
-  font-size 1.875em
-  font-size 2.25em
-  font-weight normal
-  letter-spacing .01em
-  text-indent @letter-spacing
-
-  a
-
-    &, &:visited
-      color inherit
-      text-decoration none
-
-.share
-  margin 1em auto
-  font-size 0
-  text-align center
-
-  iframe
-    display inline-block
-    vertical-align middle
-    background #eee
-    border-radius 5px
-    margin-left auto
-    margin-right auto
-    border 0
-    height 2.3rem
-
-    &:hover
-      opacity 1
-
-    &.github
-      width 12rem
-      margin-right 1rem
-
-      @media (max-width 36em)
-        width 100%
-        margin-right 0
-        margin-bottom .5rem
-
-    &.twitter
-      width 8.5rem
-
-      @media (max-width 36em)
-        width 100%
-
-h2 a
-
-  &, &:visited
-    color inherit
-
-h1 + h2
-  font-size 1.1875em
-  font-weight normal
-  margin-top 0
-
-h3
-  text-align center
-  font-size 1em
-  font-weight bold
-  text-transform uppercase
-  letter-spacing .25em
-  text-indent @letter-spacing
-  padding-top 3.75em
-  margin 0 auto
-  margin-bottom 1.5em
-
-  @media (max-width 48em)
-    font-weight normal
-
-p
-  margin 1em 0
-
-  &.indented
-    text-indent 1.5em
-
-section
-  margin 2em auto
-  padding 1.5em
-  width 34em
-  max-width 100%
-  border-radius .3125em
-
-  h3
-    padding-top .5em
-
-  > *:first-child
-    margin-top 0
-
-  > *:last-child
-    margin-bottom 0
-
-  &.about
-    background #eee
-
-footer
-  text-align center
-
-  a
-    text-decoration none
-    color brandPink
+  @media editorWithCodeOverlayMaxWidthQuery
+    padding-left smallNavigationWidth
 
 .code-editor
-  position absolute
+  position relative
   width 100%
   z-index 10
 
@@ -273,7 +149,9 @@ footer
     line-height 21px // Note: this number is crucial to the JS
     height 100%
     width 100%
-    max-width calc(100% - 400px)
+
+    @media editorWithCodeOverlayMinWidthQuery
+      max-width "calc(100% - %s)" % codeOverlayWidth
 
   .code-property-path
     position fixed
@@ -295,6 +173,12 @@ footer
     overflow hidden
     line-height 1.3em
     background #fff
+    opacity 0
+    pointer-events none
+
+    @media editorWithCodeOverlayMinWidthQuery
+      opacity 1
+      pointer-events all
 
     &:empty
       display none !important
@@ -378,3 +262,38 @@ html .ace-tm
 
   .ace_entity.ace_name.ace_function, .ace_entity.ace_other, .ace_entity.ace_other.ace_attribute-name, .ace_variable
     color codePink
+
+// TODO
+
+// .share
+//   margin 1em auto
+//   font-size 0
+//   text-align center
+
+//   iframe
+//     display inline-block
+//     vertical-align middle
+//     background #eee
+//     border-radius 5px
+//     margin-left auto
+//     margin-right auto
+//     border 0
+//     height 2.3rem
+
+//     &:hover
+//       opacity 1
+
+//     &.github
+//       width 12rem
+//       margin-right 1rem
+
+//       @media (max-width 36em)
+//         width 100%
+//         margin-right 0
+//         margin-bottom .5rem
+
+//     &.twitter
+//       width 8.5rem
+
+//       @media (max-width 36em)
+//         width 100%
