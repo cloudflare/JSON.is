@@ -1,5 +1,8 @@
 extend ../docBase
 
+prepend html
+  - format = "bower"
+
 block title
   | bower.json is a file which provides a high-level description of a JavaScript project
 
@@ -38,6 +41,3 @@ block code
         "angular": "1.2.25"
       }
     }
-
-block docs
-  script(src="../js/bower.json.js")

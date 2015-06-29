@@ -1,5 +1,8 @@
 extend ../docBase
 
+prepend html
+  - format = "package"
+
 block title
   | package.json is a file which provides a high-level description of an npm project
 
@@ -55,6 +58,3 @@ block code
         "gulp-mustache": "^1.0.2"
       }
     }
-
-block docs
-  script(src="../js/package.json.js")

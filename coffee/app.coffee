@@ -4,6 +4,15 @@ require('brace/theme/textmate')
 
 {getItemAt} = require('./parse.coffee')
 
+format = document.querySelector('html').getAttribute('data-format')
+switch format
+  when 'install'
+    context = require('./formats/install.coffee')
+  when 'package'
+    context = require('./formats/package.coffee')
+  when 'bower'
+    context = require('./formats/bower.coffee')
+
 editorId = 'editor'
 editorEl = document.getElementById editorId
 
@@ -45,14 +54,16 @@ window.addEventListener 'resize', -> positionCodeOverlay()
 
 document.documentElement.classList.add 'page-loaded'
 
-simplifyArrayPaths = (path) ->
-  path = path.replace /\.\d$/, '.0'
-  path = path.replace /\.\d.*\./, '.0.'
-  path = path.replace /^(options\.properties\.)([^\.]*)/, '$1*'
-  path = path.replace /(\.properties\.)([^\.]*)/g, '$1*'
-  path = path.replace /(\.enumNames\.)([^\.]*)/g, '$1*'
-  path = path.replace /(\.showIf\.)([^\.]*)/g, '$1*'
-  path
+reCache = {}
+processContext = (context) ->
+  for k, v of context
+    re = "^#{ k }$"
+    re = re.replace /PROPERTY/g, '[^\.]+'
+    re = re.replace /INDEX/g, '\d+'
+
+    reCache[k] = new RegExp re
+
+processContext context
 
 setCodeContextDisplay = (itemErrored, selectionRange) ->
   if not itemErrored and selectionRange.start.column is selectionRange.end.column and selectionRange.start.row is selectionRange.end.row
@@ -73,10 +84,17 @@ positionCodeOverlay = ->
 
 setEditorOverlayContext = (item) ->
   item = path: 'default' if not item.path
-  contextPath = simplifyArrayPaths item.path
-  contextHTML = window.JSON_CONTEXT[contextPath]?(item) or ''
-  setTimeout ->
-    overlayEl.innerHTML = contextHTML
+  for k, re of reCache
+    if re.test item.path
+      if typeof context[k] is 'function'
+        contextHTML = context[k](item) or ''
+      else
+        contextHTML = context[k] or ''
+
+      setTimeout ->
+        overlayEl.innerHTML = contextHTML
+
+      break
 
 positionCodeOverlay 0
 setEditorOverlayContext 'default'

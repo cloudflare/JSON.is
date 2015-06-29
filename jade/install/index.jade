@@ -1,5 +1,8 @@
 extend ../docBase
 
+prepend html
+  - format = "install"
+
 block title
   | install.json is a description of how to include and configure (JavaScript, CSS, and HTML)-based projects into websites
 
@@ -74,6 +77,3 @@ block code
         }
       }
     }
-
-block docs
-  script(src="../js/install.json.js")
