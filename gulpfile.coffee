@@ -43,6 +43,36 @@ gulp.task 'js', ->
     .pipe(source('app.js'))
     .pipe(gulp.dest('./build/js'))
 
+  browserify({
+    entries: [
+      './coffee/bower.json.coffee'
+    ]
+    extensions: ['.coffee']
+  })
+    .bundle()
+    .pipe(source('bower.json.js'))
+    .pipe(gulp.dest('./build/js'))
+
+  browserify({
+    entries: [
+      './coffee/install.json.coffee'
+    ]
+    extensions: ['.coffee']
+  })
+    .bundle()
+    .pipe(source('install.json.js'))
+    .pipe(gulp.dest('./build/js'))
+
+  browserify({
+    entries: [
+      './coffee/package.json.coffee'
+    ]
+    extensions: ['.coffee']
+  })
+    .bundle()
+    .pipe(source('package.json.js'))
+    .pipe(gulp.dest('./build/js'))
+
 gulp.task 'css', ->
   gulp.src('./styl/**/*.styl')
     .pipe(stylus(STYLUS_OPTS))

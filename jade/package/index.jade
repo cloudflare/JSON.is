@@ -1,0 +1,60 @@
+extend ../docBase
+
+block title
+  | package.json is a file which provides a high-level description of an npm project
+
+block code
+  #editor.
+    {
+      "name": "App",
+      "version": "1.3.0",
+      "main": "app.js",
+      "engines": {
+        "node": "0.10.26"
+      },
+      "browserify": {
+        "transform": [
+          "coffeeify"
+        ]
+      },
+      "scripts": {
+        "test": "karma start tests/karma.conf.js",
+        "test-single-run": "karma start tests/karma.conf.js --single-run"
+      },
+      "devDependencies": {
+        "coffee-script": "^1.7.1",
+        "gulp": "~3.6.2",
+        "gulp-concat": "~2.1.7",
+        "gulp-jshint": "~1.5.0",
+        "gulp-angular-templatecache": "^1.1.0",
+        "gulp-coffee": "~1.4.1",
+        "gulp-util": "~2.2.14",
+        "gulp-if": "~0.0.5",
+        "gulp-jade": "~0.4.2",
+        "gulp-stylus": "1.3.7",
+        "browserify": "^4.1.6",
+        "coffeeify": "^0.6.0",
+        "nib": "^1.0.2",
+        "marked": "^0.3.2",
+        "gulp-bower": "0.0.4",
+        "proxy-middleware": "^0.5.0",
+        "gulp-rename": "~1.2.0",
+        "gulp-markdown": "~0.1.2",
+        "karma": "^0.12.16",
+        "karma-jasmine": "~0.1.5",
+        "karma-chrome-launcher": "~0.1.4",
+        "karma-coffee-preprocessor": "^0.2.1",
+        "karma-firefox-launcher": "~0.1.3",
+        "protractor": "^0.24.0",
+        "selenium-webdriver": "^2.42.0",
+        "q": "^1.0.1",
+        "gulp-shell": "^0.2.7",
+        "vinyl-source-stream": "^0.1.1",
+        "gulp-minify-css": "0.4.4",
+        "gulp-uglify": "^0.2.1",
+        "gulp-mustache": "^1.0.2"
+      }
+    }
+
+block docs
+  script(src="../js/package.json.js")
