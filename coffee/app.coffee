@@ -83,6 +83,7 @@ positionCodeOverlay = ->
   setTimeout position, 50
 
 setEditorOverlayContext = (item) ->
+  contextHTML = ''
   item = path: 'default' if not item.path
   for k, re of reCache
     if re.test item.path
@@ -91,10 +92,10 @@ setEditorOverlayContext = (item) ->
       else
         contextHTML = context[k] or ''
 
-      setTimeout ->
-        overlayEl.innerHTML = contextHTML
-
       break
+
+  setTimeout ->
+    overlayEl.innerHTML = contextHTML
 
 positionCodeOverlay 0
 setEditorOverlayContext 'default'
