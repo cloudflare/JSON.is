@@ -80,7 +80,7 @@ gulp.task 'css', ->
     .pipe(gulp.dest('./build/css'))
 
 gulp.task 'html', ->
-  gulp.src('./jade/**/*.jade')
+  gulp.src('./jade/**/index.jade')
     .pipe(jade().on('error', handleError))
     .pipe(gulp.dest('./build'))
 
