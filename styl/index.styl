@@ -8,6 +8,7 @@
 @import "ui/styl/hr"
 @import "ui/styl/h1-h6"
 @import "ui/styl/links-brand-colored"
+@import "ui/styl/icons"
 @import "ui/styl/more-links-and-buttons"
 @import "ui/styl/loading-dots"
 @import "ui/styl/box"
@@ -25,12 +26,18 @@ codeRed = #b34651
 codePink = #ae2f7d
 codeLightPink = #bcb2c0
 
-navigationWidth = 15em
-smallNavigationWidth = 13em
-codeOverlayWidth = 25em
-minimumEditorWidth = 25em
+navigationWidth = 15rem
+smallNavigationWidth = 13rem
+
+codeOverlayWidth = 25rem
+minimumEditorWidth = 25rem
 editorWithCodeOverlayMinWidthQuery = "(min-width: " + (navigationWidth + codeOverlayWidth + minimumEditorWidth) + ")"
 editorWithCodeOverlayMaxWidthQuery = "(max-width: " + (navigationWidth + codeOverlayWidth + minimumEditorWidth - .0625em) + ")"
+
+codeOverlayWidthLarge = 30rem
+minimumEditorWidthLarge = 45rem
+editorWithCodeOverlayLargeMinWidthQuery = "(min-width: " + (navigationWidth + codeOverlayWidthLarge + minimumEditorWidthLarge) + ")"
+editorWithCodeOverlayLargeMaxWidthQuery = "(max-width: " + (navigationWidth + codeOverlayWidthLarge + minimumEditorWidthLarge - .0625em) + ")"
 
 html
   antialiasedFonts()
@@ -153,13 +160,11 @@ ul.side-navigation-list
     height 100vh
     width 100%
 
-    // @media editorWithCodeOverlayMinWidthQuery
-    //   max-width "calc(100% - %s)" % codeOverlayWidth
-
   .code-property-path
     position fixed
+    z-index 4
     bottom 0
-    right 15px // TODO - base on vertical scrollbar width
+    right 15px // later set by scrollbar width calculated with JS
     background #fff
     padding 5px
     color subtle-text
@@ -174,9 +179,9 @@ ul.side-navigation-list
     top 0
     right 0
     width 50%
-    width 400px
+    width codeOverlayWidth
     max-height 100vh
-    overflow auto
+    overflow-y scroll
     -webkit-overflow-scrolling touch
     padding 21px
     line-height 1.3em
@@ -184,8 +189,43 @@ ul.side-navigation-list
     opacity 0
     pointer-events none
 
+    @media editorWithCodeOverlayLargeMinWidthQuery
+      width codeOverlayWidthLarge
+
+    &:after
+      content "Scroll down"
+      display block
+      position fixed
+      font-size .85em
+      font-weight bold
+      text-transform uppercase
+      letter-spacing .02em
+      text-indent @letter-spacing
+      line-height 1em
+      padding .7em 15px .6em 0 // 15px later set by scrollbar width calculated with JS
+      bottom 0
+      right 0
+      width codeOverlayWidth
+      background #ff0093
+      color #fff
+      text-align center
+      transition opacity .2s ease
+      opacity 0
+      pointer-events none
+
+      @media editorWithCodeOverlayLargeMinWidthQuery
+        width codeOverlayWidthLarge
+
+    &[target-off-screen]
+      display none !important
+
     &[overflow-y="true"]
-      background #e0e0e0
+
+      &:after
+        opacity .6
+
+      &:hover:after
+        opacity 0
 
     @media editorWithCodeOverlayMinWidthQuery
       opacity 1
@@ -205,11 +245,14 @@ ul.side-navigation-list
       font-size 1em
 
     pre
-      line-height 1.1em
+      line-height 1.18em
       font-size .85em
       background-color #eee
       padding 1em
       color #222
+      white-space pre
+      word-wrap normal
+      overflow-x auto
 
     > *:first-child
       margin-top 0
@@ -274,37 +317,77 @@ html .ace-tm
   .ace_entity.ace_name.ace_function, .ace_entity.ace_other, .ace_entity.ace_other.ace_attribute-name, .ace_variable
     color codePink
 
-// TODO
+// Home page styles
 
-// .share
-//   margin 1em auto
-//   font-size 0
-//   text-align center
+html.json-is-home-page
+  min-height 100vh
+  background-color #111
+  background-image linear-gradient(#111, #1f0514)
+  color rgba(#fff, .65)
+  text-align center
 
-//   iframe
-//     display inline-block
-//     vertical-align middle
-//     background #eee
-//     border-radius 5px
-//     margin-left auto
-//     margin-right auto
-//     border 0
-//     height 2.3rem
+  body
+    padding 5em 1em
 
-//     &:hover
-//       opacity 1
+  header a
+    color #fff
 
-//     &.github
-//       width 12rem
-//       margin-right 1rem
+  ul.docs
+    padding-left 3em
+    padding-right 3em
+    max-width 80em
+    margin-left auto
+    margin-right auto
+    display flex
+    list-style none
+    padding 0
 
-//       @media (max-width 36em)
-//         width 100%
-//         margin-right 0
-//         margin-bottom .5rem
+    @media (max-width 50em)
+      display block
 
-//     &.twitter
-//       width 8.5rem
+    > li
+      flex 1
+      padding 1.5em
 
-//       @media (max-width 36em)
-//         width 100%
+      > a
+        display block
+        height 20em
+        padding-top 2em
+        background rgba(#fff, .06)
+        color #fff
+        border-radius 3px
+        overflow hidden
+        user-select none
+        transition all .13s ease
+
+        &:hover
+          background #fff
+          color #000
+
+        > button.more.title
+          position relative
+          background none
+          border 0
+          padding 0
+          font-size 2em
+          color inherit
+          letter-spacing -0.025em
+
+        > pre
+          padding 1em
+          text-align left
+          margin 0
+          white-space pre
+          word-wrap normal
+          overflow hidden
+          font-size .8em
+          color #61324b
+
+  footer
+    color rgba(#fff, .6)
+
+    p.created
+      font-size 1.2em
+
+    a
+      color #fff

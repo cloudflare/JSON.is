@@ -4,6 +4,28 @@ require('brace/theme/textmate')
 
 {getItemAt} = require('./parse.coffee')
 
+scrollbarWidth = do ->
+  scrollEl = document.createElement 'div'
+  scrollEl.style.cssText = 'width: 100px; height: 100px; overflow: scroll; position: absolute; left: -99999px'
+  document.body.appendChild scrollEl
+  scrollbarWidth = scrollEl.offsetWidth - scrollEl.clientWidth
+  document.body.removeChild scrollEl
+  return scrollbarWidth
+
+scrollbarWidthAdjustStyles = """
+  .code-editor .code-property-path {
+    right: #{ scrollbarWidth }px
+  }
+
+  .code-editor .code-overlay:after {
+    padding-right: #{ scrollbarWidth }px
+  }
+"""
+
+style = document.createElement 'style'
+style.innerHTML = scrollbarWidthAdjustStyles
+document.body.appendChild style
+
 format = document.querySelector('html').getAttribute('data-format')
 switch format
   when 'install'
@@ -21,7 +43,7 @@ propertyPathEl = document.querySelector '.code-property-path'
 
 editor = ace.edit editorId
 editor.setTheme 'ace/theme/textmate'
-#editor.setShowPrintMargin false
+editor.setShowPrintMargin false
 #editor.setOptions 'maxLines', Infinity
 
 editorSession = editor.getSession()
@@ -29,30 +51,36 @@ editorSession.setMode 'ace/mode/json'
 editorSession.setTabSize 2
 editorSession.setUseWrapMode true
 editorSession.setUseSoftTabs true
-#editor.setOption 'wrap', 80
-
 editor.setOption 'vScrollBarAlwaysVisible', true
 
 setWrapBasedOnViewportWidth = ->
   wrapInCharacters = 40
 
-  try
-    characterWidth = 9.60156 # TODO - make smarter
-    overlayWidth = 400 # TODO - keep in sync with CSS
+  pageWidth = document.documentElement.clientWidth
+  characterWidth = 9.60156 # TODO - make smarter
 
-    pageWidth = document.documentElement.clientWidth
+  # TODO - keep this in sync with CSS
+  if pageWidth < 1040
+    editor.setOption 'wrap', 'free'
 
-    node = document.querySelector('.ace_content .ace_layer.ace_text-layer .ace_line_group')
-    lineOffsetLeft = 0
-    while node.parentNode isnt document.body
-      lineOffsetLeft += node.offsetLeft
-      node = node.parentNode
+  else
+    # TODO - keep this in sync with CSS
+    if pageWidth < 1440
+      overlayWidth = 400
+    else
+      overlayWidth = 480
 
-    wrapLengthPixels = pageWidth - (lineOffsetLeft + overlayWidth)
-    wrapInCharacters = parseInt(wrapLengthPixels / characterWidth, 10) - 1
+    try
+      node = document.querySelector '.ace_content .ace_layer.ace_text-layer .ace_line_group'
+      lineOffsetLeft = 0
+      while node.parentNode isnt document.body
+        lineOffsetLeft += node.offsetLeft
+        node = node.parentNode
 
-  editor.setOption 'wrap', wrapInCharacters
-  editor.setOption 'printMargin', wrapInCharacters
+      wrapLengthPixels = pageWidth - (lineOffsetLeft + overlayWidth)
+      wrapInCharacters = parseInt(wrapLengthPixels / characterWidth, 10) - 1
+
+    editor.setOption 'wrap', wrapInCharacters
 
 setWrapBasedOnViewportWidth()
 window.addEventListener 'resize', -> setWrapBasedOnViewportWidth()
@@ -108,8 +136,13 @@ positionCodeOverlay = ->
     rowEl = editorEl.querySelector '.ace_content .ace_marker-layer .ace_active-line'
     aceContentEl = editorEl.querySelector '.ace_content'
 
+    if not rowEl or not aceContentEl
+      overlayEl.setAttribute 'target-off-screen', ''
+      return
+
     top = 0
     if rowEl and aceContentEl
+      overlayEl.removeAttribute 'target-off-screen'
       top = rowEl.offsetTop + parseInt(aceContentEl.style.marginTop, 10)
 
     if top + overlayEl.clientHeight > document.documentElement.clientHeight
@@ -119,7 +152,7 @@ positionCodeOverlay = ->
     overlayEl.style.top = top + 'px'
 
   position()
-  setTimeout position, 50
+  setTimeout(position, 50)
 
 setEditorOverlayContext = (item) ->
   contextHTML = ''
