@@ -58,8 +58,8 @@ reCache = {}
 processContext = (context) ->
   for k, v of context
     re = "^#{ k }$"
-    re = re.replace /PROPERTY/g, '[^\.]+'
-    re = re.replace /INDEX/g, '\d+'
+    re = re.replace /PROPERTY/g, '[^\\.]+'
+    re = re.replace /INDEX/g, '\\d+'
 
     reCache[k] = new RegExp re
 
