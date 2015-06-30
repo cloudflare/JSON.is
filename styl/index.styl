@@ -141,40 +141,51 @@ ul.side-navigation-list
 
 .code-editor
   position relative
+  overflow hidden
   width 100%
+  height 100%
   z-index 10
 
   #editor
     font-size 16px // Note: this number is crucial to the JS
     line-height 21px // Note: this number is crucial to the JS
     height 100%
+    height 100vh
     width 100%
 
-    @media editorWithCodeOverlayMinWidthQuery
-      max-width "calc(100% - %s)" % codeOverlayWidth
+    // @media editorWithCodeOverlayMinWidthQuery
+    //   max-width "calc(100% - %s)" % codeOverlayWidth
 
   .code-property-path
     position fixed
     bottom 0
-    right 0
+    right 15px // TODO - base on vertical scrollbar width
     background #fff
     padding 5px
     color subtle-text
     font-size .8em
 
+    &:empty
+      display none !important
+
   .code-overlay
-    position absolute
+    position fixed
     z-index 5
     top 0
     right 0
     width 50%
     width 400px
+    max-height 100vh
+    overflow auto
+    -webkit-overflow-scrolling touch
     padding 21px
-    overflow hidden
     line-height 1.3em
     background #fff
     opacity 0
     pointer-events none
+
+    &[overflow-y="true"]
+      background #e0e0e0
 
     @media editorWithCodeOverlayMinWidthQuery
       opacity 1

@@ -21,14 +21,41 @@ propertyPathEl = document.querySelector '.code-property-path'
 
 editor = ace.edit editorId
 editor.setTheme 'ace/theme/textmate'
-editor.setShowPrintMargin false
-editor.setOptions maxLines: Infinity
+#editor.setShowPrintMargin false
+#editor.setOptions 'maxLines', Infinity
 
 editorSession = editor.getSession()
 editorSession.setMode 'ace/mode/json'
 editorSession.setTabSize 2
-editorSession.setUseSoftTabs true
 editorSession.setUseWrapMode true
+editorSession.setUseSoftTabs true
+#editor.setOption 'wrap', 80
+
+editor.setOption 'vScrollBarAlwaysVisible', true
+
+setWrapBasedOnViewportWidth = ->
+  wrapInCharacters = 40
+
+  try
+    characterWidth = 9.60156 # TODO - make smarter
+    overlayWidth = 400 # TODO - keep in sync with CSS
+
+    pageWidth = document.documentElement.clientWidth
+
+    node = document.querySelector('.ace_content .ace_layer.ace_text-layer .ace_line_group')
+    lineOffsetLeft = 0
+    while node.parentNode isnt document.body
+      lineOffsetLeft += node.offsetLeft
+      node = node.parentNode
+
+    wrapLengthPixels = pageWidth - (lineOffsetLeft + overlayWidth)
+    wrapInCharacters = parseInt(wrapLengthPixels / characterWidth, 10) - 1
+
+  editor.setOption 'wrap', wrapInCharacters
+  editor.setOption 'printMargin', wrapInCharacters
+
+setWrapBasedOnViewportWidth()
+window.addEventListener 'resize', -> setWrapBasedOnViewportWidth()
 
 selection = editorSession.getSelection()
 selection.on 'changeCursor', ->
@@ -52,6 +79,9 @@ selection.on 'changeCursor', ->
 
 window.addEventListener 'resize', -> positionCodeOverlay()
 
+editorSession.on 'changeScrollTop', -> positionCodeOverlay()
+
+editor.focus()
 document.documentElement.classList.add 'page-loaded'
 
 reCache = {}
@@ -76,8 +106,17 @@ setCodeContextDisplay = (itemErrored, selectionRange) ->
 positionCodeOverlay = ->
   position = ->
     rowEl = editorEl.querySelector '.ace_content .ace_marker-layer .ace_active-line'
-    if rowEl
-      overlayEl.style.top = rowEl.offsetTop + 'px'
+    aceContentEl = editorEl.querySelector '.ace_content'
+
+    top = 0
+    if rowEl and aceContentEl
+      top = rowEl.offsetTop + parseInt(aceContentEl.style.marginTop, 10)
+
+    if top + overlayEl.clientHeight > document.documentElement.clientHeight
+      top = Math.max(0, document.documentElement.clientHeight - overlayEl.clientHeight)
+
+    overlayEl.setAttribute 'overflow-y', (document.documentElement.clientHeight - overlayEl.clientHeight <= 0)
+    overlayEl.style.top = top + 'px'
 
   position()
   setTimeout position, 50
