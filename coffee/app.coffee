@@ -4,6 +4,12 @@ require('brace/theme/textmate')
 
 {getItemAt} = require('./parse.coffee')
 
+# iOS CSS hover hack
+document.addEventListener 'touchstart', ->, false
+
+if not document.getElementById '#editor'
+  return
+
 scrollbarWidth = do ->
   scrollEl = document.createElement 'div'
   scrollEl.style.cssText = 'width: 100px; height: 100px; overflow: scroll; position: absolute; left: -99999px'
