@@ -5,7 +5,7 @@ require('brace/theme/textmate')
 {getItemAt} = require('./parse.coffee')
 
 # iOS CSS hover hack
-document.addEventListener 'touchstart', ->, false
+document.addEventListener('touchstart', (->), false)
 
 if not document.getElementById '#editor'
   return
