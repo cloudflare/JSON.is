@@ -7,7 +7,7 @@ require('brace/theme/textmate')
 # iOS CSS hover hack
 document.addEventListener('touchstart', (->), false)
 
-if not document.getElementById '#editor'
+if not document.getElementById 'editor'
   return
 
 scrollbarWidth = do ->
