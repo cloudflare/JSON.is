@@ -109,6 +109,12 @@ context =
     <p>A list of files for Bower to ignore when installing your package.</p>
   '''
 
+  'devDependencies': '''
+    <h4>Dev Dependencies</h4>
+
+    <p>Dependencies that are only needed for development of the package, e.g., test framework or building documentation.</p>
+  '''
+
   'dependencies': '''
     <h4>Dependencies</h4>
 
