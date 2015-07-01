@@ -78,7 +78,7 @@ context =
   'description': '''
     <h4>Description</h4>
 
-    <p>Help users identify and search for your package with a brief description. Describe what your package does, rather than what it's made of. Will be displayed in search/lookup results on the CLI and the website that can be used to search for packages.</p>
+    <p>Help users identify and search for your package with a brief description. Describe what your package does, rather than what it’s made of. Will be displayed in search/lookup results on the CLI and the website that can be used to search for packages.</p>
 
     <p>Can contain any characters, but should be 140 characters or less.</p>
   '''
@@ -139,7 +139,7 @@ context =
   '(dependencies|devDependencies)\.PROPERTY': '''
     <h4>Dependency</h4>
 
-    <p>Each dependency is specified with it’s name, and either a <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a> compatible version or URL.</p>
+    <p>Each dependency is specified with its name, and either a <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a> compatible version or URL.</p>
 
     <ul>
       <li>Key must be a valid project name.</li>
