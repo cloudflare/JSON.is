@@ -39,6 +39,8 @@ minimumEditorWidthLarge = 45rem
 editorWithCodeOverlayLargeMinWidthQuery = "(min-width: " + (navigationWidth + codeOverlayWidthLarge + minimumEditorWidthLarge) + ")"
 editorWithCodeOverlayLargeMaxWidthQuery = "(max-width: " + (navigationWidth + codeOverlayWidthLarge + minimumEditorWidthLarge - .0625em) + ")"
 
+mobileMessageMaxWidthQuery = "(max-width: " + (smallNavigationWidth + minimumEditorWidth + 5em) + ")"
+
 html
   antialiasedFonts()
   font-size 16px
@@ -90,12 +92,28 @@ html
   @media editorWithCodeOverlayMaxWidthQuery
     width smallNavigationWidth
 
+  .mobile-message
+    display none
+
+  @media mobileMessageMaxWidthQuery
+    width 100%
+    min-height 100vh
+    position relative
+
+    .mobile-message
+      display block
+      color rgba(#fff, .8)
+      padding 0 2em 4em
+
 ul.side-navigation-list
   list-style none
   padding 0
   margin 0
   line-height 1.5em
   font-size 1.1875em
+
+  @media mobileMessageMaxWidthQuery
+    display none
 
   > li
 
@@ -145,6 +163,9 @@ ul.side-navigation-list
 
   @media editorWithCodeOverlayMaxWidthQuery
     padding-left smallNavigationWidth
+
+  @media mobileMessageMaxWidthQuery
+    display none
 
 .code-editor
   position relative

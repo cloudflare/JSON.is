@@ -24,6 +24,16 @@ block html
         a.json-is-logo(href="http://json.is")
           | JSON.is
 
+        .mobile-message
+          p
+            | Since #{ format }.json.is is primarilly a code editor, it’s not really very suited for small screens.
+          p
+            | Please check us out on a larger screen to get access.
+
+          p
+            a.more(href="mailto:?subject=Check out #{ format }.json.is when I’m next at a computer&body=Website: http://#{ format }.json.is" target="_blank")
+              | Email yourself a reminder
+
         ul.side-navigation-list
           li
             a(class=(format === 'bower' ? 'active' : '') href="http://bower.json.is") bower.json
