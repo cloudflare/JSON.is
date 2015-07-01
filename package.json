@@ -35,6 +35,7 @@
     "browserify": "^6.2.0",
     "coffee-script": "^1.8.0",
     "coffeeify": "^1.1.0",
-    "brace": "^0.5.1"
+    "brace": "^0.5.1",
+    "gulp-streamify": "0.0.5"
   }
 }

@@ -15,6 +15,7 @@ replace    = require 'gulp-replace'
 source     = require 'vinyl-source-stream'
 stylus     = require 'gulp-stylus'
 uglify     = require 'gulp-uglify'
+streamify  = require 'gulp-streamify'
 
 handleError = (err) ->
   gutil.log err
@@ -39,6 +40,9 @@ gulp.task 'js', ->
   })
     .bundle()
     .pipe(source('app.js'))
+    .pipe(streamify(uglify(
+      preserveComments: 'some'
+    )))
     .pipe(gulp.dest('./build/js'))
 
 gulp.task 'css', ->
