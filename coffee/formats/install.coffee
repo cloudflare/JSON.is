@@ -112,10 +112,10 @@ context =
 
     <hr>
 
-    <p>There are two types of options, primitive options and abstract options.</p>
+    <p>There are two types of options, primitive options and container options.</p>
     <p>Primitive options are objects with <code>type</code> <code>boolean</code>, <code>number</code>, <code>integer</code>, or <code>string</code> and a variety of string formats including <code>color</code>, <code>selector</code>, and others.</p>
 
-    <p>Abstract options are arrays and objects which can nest other primitive and abstract options recursively.</p>
+    <p>Container options are arrays and objects which can nest other primitive and container options recursively.</p>
 
     <p><a class="more" target="_blank" href="https://github.com/EagerIO/DeveloperDocs/blob/master/docs/adding-your-app.md#install-json">Learn more about install.json options</a></p>
   '''
@@ -254,7 +254,7 @@ context =
 
     <hr>
 
-    <h5>Abstract option types</h5>
+    <h5>Container option types</h5>
 
     <p>Nested set of options</p>
 
@@ -268,7 +268,7 @@ context =
     <pre><code>{
       "type": "array",
       "items": {
-        "type": "[ Any primitive option type or object abstract option type ]"
+        "type": "[ Any primitive option type or container option type ]"
       }
     }</code></pre>
   '''
