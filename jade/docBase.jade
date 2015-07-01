@@ -1,4 +1,5 @@
 include ../bower_components/ui/jade/typekit
+include ../bower_components/ui/jade/logo
 
 doctype html
 block html
@@ -47,6 +48,14 @@ block html
           li
             a(href="http://json.is") About
 
+        a.share.share-target
+          span
+            | Share
+
+        a.attribution(href="https://eager.io")
+          .logo-link
+            +logo
+
       .page
         .code-editor
           block code
@@ -56,4 +65,5 @@ block html
 
           .code-property-path
 
+      script(src="../js/lib.js")
       script(src="../js/app.js")

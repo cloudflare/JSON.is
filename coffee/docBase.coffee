@@ -162,3 +162,26 @@ processContext = (context) ->
 processContext context
 
 setEditorOverlayContext 'default'
+
+setUpShare = ->
+  _Drop = Drop.createContext
+    classPrefix: 'share'
+
+  target = document.querySelector '.share-target'
+
+  drop = new _Drop
+    target: target
+    classes: 'share'
+    openOn: 'click'
+    position: 'top left'
+    constrainToWindow: true
+    constrainToScrollParent: false
+    content: """
+       <ul>
+         <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F#{ format }.json.is" target="_blank" class="share-icon-facebook">Facebook</a></li>
+         <li><a href="https://twitter.com/intent/tweet?name=%20&url=http://#{ format }.json.is&text=Open-source%20documentation%20for%20#{ format }.json%20files.&via=EagerIO" target="_blank" class="share-icon-twitter">Twitter</a></li>
+         <li><a href="mailto:?subject=Open-source documentation for #{ format }.json files&body=Website: http://#{ format }.json.is" target="_blank" class="share-icon-email">Email</a></li>
+       </ul>
+    """
+
+setUpShare()

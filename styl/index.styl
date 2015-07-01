@@ -15,6 +15,7 @@
 @import "ui/styl/inline-code"
 @import "ui/styl/colors"
 @import "ui/styl/fonts"
+@import "ui/styl/logo"
 @import "ui/styl/font-smoothing"
 
 //@import "ui/styl/code-colors"
@@ -148,6 +149,52 @@ ul.side-navigation-list
         &, &:hover
           background #fff
           color #000
+
+.share-target, a.attribution
+  position absolute
+  cursor pointer
+  bottom 0
+  height 60px
+  background #fff
+  text-align center
+  border-right 1px solid #dfd1d9
+
+  &:hover, &.share-enabled
+    background #efe6eb
+
+.share-target
+  left 0
+  right 50%
+  line-height 60px
+  font-size 1.1875em
+
+  &, &:hover
+    color #000
+
+  span
+    text-transform uppercase
+    font-size .7em
+    letter-spacing .07em
+    text-indent @letter-spacing
+
+.share.share-element
+  width navigationWidth
+
+  @media editorWithCodeOverlayMaxWidthQuery
+    width smallNavigationWidth
+
+a.attribution
+  left 50%
+  right 0
+  padding 1.25em
+
+  .logo-link
+    position relative
+    font-size .23em
+    vertical-align middle
+
+  @media mobileMessageMaxWidthQuery
+    border-right 0
 
 .json-is-logo
   color #fff
@@ -445,3 +492,316 @@ html.json-is-home-page
 
     a
       color #fff
+
+// Share
+
+@css {
+
+.share, .share:after, .share:before, .share *, .share *:after, .share *:before {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none
+}
+
+.share-element {
+  position: absolute;
+  display: none
+}
+
+  .share-element.share-open {
+    display: block
+  }
+
+@font-face {
+  font-family: "share-icons";
+  font-style: normal;
+  font-weight: normal;
+  src: url(data:application/x-font-woff;charset=utf-8;base64,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) format("woff")
+}
+
+.share [class^="share-icon-"]:before {
+  font-family: "share-icons";
+  font-style: normal;
+  font-weight: normal
+}
+
+.share-icon-share:before {
+  content: "\ea7d"
+}
+
+.share-icon-email:before {
+  content: "\e945"
+}
+
+.share-icon-twitter:before {
+  content: "\ea91"
+}
+
+.share-icon-facebook:before {
+  content: "\ea8d"
+}
+
+.share-icon-github:before {
+  content: "\eab1"
+}
+
+.share.share-element {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition: opacity 360ms;
+  -moz-transition: opacity 360ms;
+  -o-transition: opacity 360ms;
+  transition: opacity 360ms;
+  opacity: 0.999;
+  z-index: 10;
+}
+
+  .share.share-element.share-open {
+    display: none
+  }
+
+  .share.share-element.share-open-transitionend {
+    display: block
+  }
+
+  .share.share-element.share-after-open {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+    opacity: 1
+  }
+
+  .share.share-element .share-content {
+    overflow: hidden;
+    position: relative
+  }
+
+    .share.share-element .share-content a[class^="share-icon-"], .share.share-element .share-content a[class*=" share-icon-"] {
+      padding: 0 20px 0 75px /* 64px */
+    }
+
+      .share.share-element .share-content a[class^="share-icon-"]:before, .share.share-element .share-content a[class*=" share-icon-"]:before {
+        position: absolute;
+        font-size: 24px;
+        line-height: 30px;
+        height: 30px;
+        width: 30px;
+        top: 0;
+        bottom: 0;
+        left: 30px; /* 20px */
+        margin: auto;
+        text-align: center;
+        speak: none
+      }
+
+      .share.share-element .share-content .share-icon-twitter:before {
+        color: #55acee
+      }
+
+      .share.share-element .share-content .share-icon-facebook:before {
+        color: #3b5998
+      }
+
+      .share.share-element .share-content .share-icon-email:before {
+        color: #efe6eb
+      }
+
+    .share.share-element .share-content ul {
+      position: relative;
+      display: block;
+      list-style-type: none;
+      margin: 0;
+      padding: 0
+    }
+
+      .share.share-element .share-content ul li {
+        position: relative;
+        display: block
+      }
+
+        .share.share-element .share-content ul li a {
+          width: 100%;
+          background: #2f1c27;
+          color: rgba(255, 255, 255, .8);
+          line-height: 60px;
+          height: 60px;
+          padding: 0 30px 0 75px;
+          display: block;
+          cursor: pointer;
+          -webkit-backface-visibility: hidden;
+          -webkit-touch-callout: none;
+          font-size: 1.1875em;
+          font-weight: normal;
+          -webkit-transform: translate3d(0, 0, 0);
+          -moz-transform: translate3d(0, 0, 0);
+          -ms-transform: translate3d(0, 0, 0);
+          -o-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0)
+        }
+
+          .share.share-element .share-content ul li a:hover {
+            background: #27131e;
+            color: #fff
+          }
+
+        .share.share-element .share-content ul li:nth-child(1) a {
+          -webkit-transform: translate3d(0, -60px, 0);
+          -moz-transform: translate3d(0, -60px, 0);
+          -ms-transform: translate3d(0, -60px, 0);
+          -o-transform: translate3d(0, -60px, 0);
+          transform: translate3d(0, -60px, 0);
+          -webkit-transition: -webkit-transform 240ms ease;
+          -webkit-transition-delay: 0ms;
+          -moz-transition: -moz-transform 240ms ease 0ms;
+          -o-transition: -o-transform 240ms ease 0ms;
+          transition: transform 240ms ease 0ms
+        }
+
+        .share.share-element .share-content ul li:nth-child(2) a {
+          -webkit-transform: translate3d(0, -120px, 0);
+          -moz-transform: translate3d(0, -120px, 0);
+          -ms-transform: translate3d(0, -120px, 0);
+          -o-transform: translate3d(0, -120px, 0);
+          transform: translate3d(0, -120px, 0);
+          -webkit-transition: -webkit-transform 240ms ease;
+          -webkit-transition-delay: 60ms;
+          -moz-transition: -moz-transform 240ms ease 60ms;
+          -o-transition: -o-transform 240ms ease 60ms;
+          transition: transform 240ms ease 60ms
+        }
+
+        .share.share-element .share-content ul li:nth-child(3) a {
+          -webkit-transform: translate3d(0, -180px, 0);
+          -moz-transform: translate3d(0, -180px, 0);
+          -ms-transform: translate3d(0, -180px, 0);
+          -o-transform: translate3d(0, -180px, 0);
+          transform: translate3d(0, -180px, 0);
+          -webkit-transition: -webkit-transform 240ms ease;
+          -webkit-transition-delay: 120ms;
+          -moz-transition: -moz-transform 240ms ease 120ms;
+          -o-transition: -o-transform 240ms ease 120ms;
+          transition: transform 240ms ease 120ms
+        }
+
+  .share.share-element.share-after-open .share-content ul li:nth-child(1) a {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 120ms;
+    -moz-transition: -moz-transform 240ms ease 120ms;
+    -o-transition: -o-transform 240ms ease 120ms;
+    transition: transform 240ms ease 120ms
+  }
+
+  .share.share-element.share-after-open .share-content ul li:nth-child(2) a {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 60ms;
+    -moz-transition: -moz-transform 240ms ease 60ms;
+    -o-transition: -o-transform 240ms ease 60ms;
+    transition: transform 240ms ease 60ms
+  }
+
+  .share.share-element.share-after-open .share-content ul li:nth-child(3) a {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 0ms;
+    -moz-transition: -moz-transform 240ms ease 0ms;
+    -o-transition: -o-transform 240ms ease 0ms;
+    transition: transform 240ms ease 0ms
+  }
+
+  .share.share-element.share-element-attached-bottom .share-content ul li:nth-child(1) a {
+    -webkit-transform: translate3d(0, 180px, 0);
+    -moz-transform: translate3d(0, 180px, 0);
+    -ms-transform: translate3d(0, 180px, 0);
+    -o-transform: translate3d(0, 180px, 0);
+    transform: translate3d(0, 180px, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 120ms;
+    -moz-transition: -moz-transform 240ms ease 120ms;
+    -o-transition: -o-transform 240ms ease 120ms;
+    transition: transform 240ms ease 120ms
+  }
+
+  .share.share-element.share-element-attached-bottom .share-content ul li:nth-child(2) a {
+    -webkit-transform: translate3d(0, 120px, 0);
+    -moz-transform: translate3d(0, 120px, 0);
+    -ms-transform: translate3d(0, 120px, 0);
+    -o-transform: translate3d(0, 120px, 0);
+    transform: translate3d(0, 120px, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 60ms;
+    -moz-transition: -moz-transform 240ms ease 60ms;
+    -o-transition: -o-transform 240ms ease 60ms;
+    transition: transform 240ms ease 60ms
+  }
+
+  .share.share-element.share-element-attached-bottom .share-content ul li:nth-child(3) a {
+    -webkit-transform: translate3d(0, 60px, 0);
+    -moz-transform: translate3d(0, 60px, 0);
+    -ms-transform: translate3d(0, 60px, 0);
+    -o-transform: translate3d(0, 60px, 0);
+    transform: translate3d(0, 60px, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 0ms;
+    -moz-transition: -moz-transform 240ms ease 0ms;
+    -o-transition: -o-transform 240ms ease 0ms;
+    transition: transform 240ms ease 0ms
+  }
+
+  .share.share-element.share-element-attached-bottom.share-after-open .share-content ul li:nth-child(1) a {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 0ms;
+    -moz-transition: -moz-transform 240ms ease 0ms;
+    -o-transition: -o-transform 240ms ease 0ms;
+    transition: transform 240ms ease 0ms
+  }
+
+  .share.share-element.share-element-attached-bottom.share-after-open .share-content ul li:nth-child(2) a {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 60ms;
+    -moz-transition: -moz-transform 240ms ease 60ms;
+    -o-transition: -o-transform 240ms ease 60ms;
+    transition: transform 240ms ease 60ms
+  }
+
+  .share.share-element.share-element-attached-bottom.share-after-open .share-content ul li:nth-child(3) a {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 240ms ease;
+    -webkit-transition-delay: 120ms;
+    -moz-transition: -moz-transform 240ms ease 120ms;
+    -o-transition: -o-transform 240ms ease 120ms;
+    transition: transform 240ms ease 120ms
+  }
+
+}

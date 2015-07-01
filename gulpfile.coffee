@@ -45,6 +45,13 @@ gulp.task 'js', ->
     )))
     .pipe(gulp.dest('./build/js'))
 
+gulp.task 'vendorJS', ->
+  # Concatenate vendor JS into build/lib.js
+  gulp.src('./js/*.js')
+    .pipe(concat('lib.js'))
+    .pipe(uglify({mangle: false}))
+    .pipe(gulp.dest('./build/js'))
+
 gulp.task 'css', ->
   gulp.src('./styl/**/*.styl')
     .pipe(stylus(STYLUS_OPTS))
@@ -71,6 +78,7 @@ gulp.task 'connect', ->
       redirect: false
 
 gulp.task 'build', [
+  'vendorJS'
   'js'
   'css'
   'html'
