@@ -1,3 +1,8 @@
+###
+@preserve
+Effect based on https://github.com/dmotz/dmotz.github.com/blob/master/src/oxism.coffee
+###
+
 touch = 'ontouchstart' of window
 w = h = 0
 positions = []
