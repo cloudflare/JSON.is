@@ -76,27 +76,23 @@ setCodeContextDisplay = (itemErrored, selectionRange) ->
     propertyPathEl.style.display = 'none'
 
 positionCodeOverlay = ->
-  position = ->
-    rowEl = editorEl.querySelector '.ace_content .ace_marker-layer .ace_active-line'
-    aceContentEl = editorEl.querySelector '.ace_content'
+  rowEl = editorEl.querySelector '.ace_content .ace_marker-layer .ace_active-line'
+  aceContentEl = editorEl.querySelector '.ace_content'
 
-    if not rowEl or not aceContentEl
-      overlayEl.setAttribute 'target-off-screen', ''
-      return
+  if not rowEl or not aceContentEl
+    overlayEl.setAttribute 'target-off-screen', ''
+    return
 
-    top = 0
-    if rowEl and aceContentEl
-      overlayEl.removeAttribute 'target-off-screen'
-      top = rowEl.offsetTop + parseInt(aceContentEl.style.marginTop, 10)
+  top = 0
+  if rowEl and aceContentEl
+    overlayEl.removeAttribute 'target-off-screen'
+    top = rowEl.offsetTop + parseInt(aceContentEl.style.marginTop, 10)
 
-    if top + overlayEl.clientHeight > document.documentElement.clientHeight
-      top = Math.max(0, document.documentElement.clientHeight - overlayEl.clientHeight)
+  if top + overlayEl.clientHeight > document.documentElement.clientHeight
+    top = Math.max(0, document.documentElement.clientHeight - overlayEl.clientHeight)
 
-    overlayEl.setAttribute 'overflow-y', (document.documentElement.clientHeight - overlayEl.clientHeight <= 0)
-    overlayEl.style.top = top + 'px'
-
-  position()
-  setTimeout(position, 50)
+  overlayEl.setAttribute 'overflow-y', (document.documentElement.clientHeight - overlayEl.clientHeight <= 0)
+  overlayEl.style.top = top + 'px'
 
 setEditorOverlayContext = (item) ->
   contextHTML = ''
@@ -110,8 +106,7 @@ setEditorOverlayContext = (item) ->
 
       break
 
-  setTimeout ->
-    overlayElContent.innerHTML = contextHTML
+  overlayElContent.innerHTML = contextHTML
 
 editor = ace.edit editorId
 editor.setTheme 'ace/theme/textmate'
@@ -147,9 +142,9 @@ selection.on 'changeCursor', ->
   positionCodeOverlay()
   setCodeContextDisplay itemErrored, selectionRange
 
-window.addEventListener 'resize', -> positionCodeOverlay()
+window.addEventListener 'resize', positionCodeOverlay
 
-editorSession.on 'changeScrollTop', -> positionCodeOverlay()
+editor.renderer.on 'afterRender', positionCodeOverlay
 
 editor.focus()
 document.documentElement.classList.add 'page-loaded'
@@ -165,7 +160,4 @@ processContext = (context) ->
 
 processContext context
 
-positionCodeOverlay 0
 setEditorOverlayContext 'default'
-
-console.log 'asd'
