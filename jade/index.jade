@@ -13,197 +13,201 @@ html.json-is-home-page
     +typekit
 
   body
-    header
-      h1 <a class="json-is-logo" href="http://json.is">JSON.is</a>
-      h2 Open-source intro documentation for common JSON formats.
-      p
-        a.more(href="https://twitter.com/intent/tweet?name=%20&url=http://json.is&text=Open-source%20intro%20documentation%20for%20common%20JSON%20formats.&via=EagerIO" target="_blank")
-          | Share on Twitter
-        | &nbsp; &nbsp; &nbsp;
-        a.more(href="https://github.com/EagerIO/JSON.is")
-          | Star on GitHub
+    #home-page
+      header
+        h1 <a class="json-is-logo" href="http://json.is">JSON.is</a>
+        h2 Open-source intro documentation for common JSON formats.
+        p
+          a.more(href="https://twitter.com/intent/tweet?name=%20&url=http://json.is&text=Open-source%20intro%20documentation%20for%20common%20JSON%20formats.&via=EagerIO" target="_blank")
+            | Share on Twitter
+          | &nbsp; &nbsp; &nbsp;
+          a.more(href="https://github.com/EagerIO/JSON.is")
+            | Star on GitHub
 
-    ul.docs
-      li
-        a(href="http://bower.json.is")
-          button.more.title
-            | bower.json
+      ul.docs#docs
+        li
+          a(href="http://bower.json.is")
+            div
+              button.more.title
+                | bower.json
 
-          pre
-            code.
-              {
-                "name": "App",
-                "main": "app.js",
-                "description": "The app to rule all apps. Don’t be evil.",
-                "authors": [
-                  "Jonny Appleseed <jonny@appleseed.com>"
-                ],
-                "private": true,
-                "ignore": [
-                  "**/.*",
-                  "node_modules",
-                  "bower_components",
-                  "test",
-                  "tests"
-                ],
-                "devDependencies": {
-                  "angular": "1.2.25",
-                  "angular-resource": "1.2.25",
-                  "angular-ui-router": "0.2.11",
-                  "zeroclipboard": "1.3.5",
-                  "angular-cookie": "4.0.2",
-                  "angular-mocks": "1.2.25",
-                  "angular-sanitize": "1.2.25",
-                  "angular-markdown-directive": "0.3.0",
-                  "angular-payments": "git@github.com:laurihy/angular-payments.git#2472bc9befa256780d106a8e53a9dea12b7341ed",
-                  "jquery": "2.1.1",
-                  "angular-ui-sortable": "0.12.11",
-                  "showdown": "0.3.1"
-                },
-                "resolutions": {
-                  "angular": "1.2.25"
-                }
-              }
-
-      li
-        a(href="http://install.json.is")
-          button.more.title
-            | install.json
-
-          pre
-            code.
-              {
-                "resources": {
-                  "head": [
-                    {
-                      "type": "style",
-                      "src": "./themes/{{ options.theme }}.css"
-                    }
-                  ],
-                  "body": [
-                    {
-                      "type": "script",
-                      "src": "plugin.js"
+              pre
+                code.
+                  {
+                    "name": "App",
+                    "main": "app.js",
+                    "description": "The app to rule all apps. Don’t be evil.",
+                    "authors": [
+                      "Jonny Appleseed <jonny@appleseed.com>"
+                    ],
+                    "private": true,
+                    "ignore": [
+                      "**/.*",
+                      "node_modules",
+                      "bower_components",
+                      "test",
+                      "tests"
+                    ],
+                    "devDependencies": {
+                      "angular": "1.2.25",
+                      "angular-resource": "1.2.25",
+                      "angular-ui-router": "0.2.11",
+                      "zeroclipboard": "1.3.5",
+                      "angular-cookie": "4.0.2",
+                      "angular-mocks": "1.2.25",
+                      "angular-sanitize": "1.2.25",
+                      "angular-markdown-directive": "0.3.0",
+                      "angular-payments": "git@github.com:laurihy/angular-payments.git#2472bc9befa256780d106a8e53a9dea12b7341ed",
+                      "jquery": "2.1.1",
+                      "angular-ui-sortable": "0.12.11",
+                      "showdown": "0.3.1"
                     },
-                    {
-                      "type": "script",
-                      "contents": "Plugin.init(INSTALL_OPTIONS)"
-                    }
-                  ]
-                },
-                "options": {
-                  "properties": {
-                    "headerText": {
-                      "order": 1,
-                      "title": "Header Text",
-                      "description": "Appears above Plugin.",
-                      "type": "string"
-                    },
-                    "location": {
-                      "order": 2,
-                      "title": "Location",
-                      "description": "Choose a location for Plugin.",
-                      "type": "string",
-                      "format": "selector"
-                    },
-                    "theme": {
-                      "order": 3,
-                      "title": "Theme",
-                      "description": "Choose a theme for Plugin.",
-                      "type": "string",
-                      "enum": [
-                        "default",
-                        "flat",
-                        "skeuomorphic",
-                        "colorful",
-                        "minimal"
-                      ],
-                      "enumNames": {
-                        "default": "Default",
-                        "flat-and-trendy": "Flat and Trendy",
-                        "skeuomorphic": "Skeuomorphic",
-                        "colorful": "Colorful",
-                        "minimal":  "Minimal"
-                     },
-                      "default": "default"
-                    },
-                    "color": {
-                      "order": 4,
-                      "title": "Color",
-                      "showIf": {
-                        "theme": "colorful"
-                      },
-                      "description": "Choose a color.",
-                      "type": "string",
-                      "format": "color",
-                      "default": "#e90f92"
+                    "resolutions": {
+                      "angular": "1.2.25"
                     }
                   }
-                }
-              }
 
-      li
-        a(href="http://package.json.is")
-          button.more.title
-            | package.json
+        li
+          a(href="http://install.json.is")
+            div
+              button.more.title
+                | install.json
 
-          pre
-            code.
-              {
-                "name": "App",
-                "version": "1.3.0",
-                "main": "app.js",
-                "engines": {
-                  "node": "0.10.26"
-                },
-                "browserify": {
-                  "transform": [
-                    "coffeeify"
-                  ]
-                },
-                "scripts": {
-                  "test": "karma start tests/karma.conf.js",
-                  "test-single-run": "karma start tests/karma.conf.js --single-run"
-                },
-                "devDependencies": {
-                  "coffee-script": "^1.7.1",
-                  "gulp": "~3.6.2",
-                  "gulp-concat": "~2.1.7",
-                  "gulp-jshint": "~1.5.0",
-                  "gulp-angular-templatecache": "^1.1.0",
-                  "gulp-coffee": "~1.4.1",
-                  "gulp-util": "~2.2.14",
-                  "gulp-if": "~0.0.5",
-                  "gulp-jade": "~0.4.2",
-                  "gulp-stylus": "1.3.7",
-                  "browserify": "^4.1.6",
-                  "coffeeify": "^0.6.0",
-                  "nib": "^1.0.2",
-                  "marked": "^0.3.2",
-                  "gulp-bower": "0.0.4",
-                  "proxy-middleware": "^0.5.0",
-                  "gulp-rename": "~1.2.0",
-                  "gulp-markdown": "~0.1.2",
-                  "karma": "^0.12.16",
-                  "karma-jasmine": "~0.1.5",
-                  "karma-chrome-launcher": "~0.1.4",
-                  "karma-coffee-preprocessor": "^0.2.1",
-                  "karma-firefox-launcher": "~0.1.3",
-                  "protractor": "^0.24.0",
-                  "selenium-webdriver": "^2.42.0",
-                  "q": "^1.0.1",
-                  "gulp-shell": "^0.2.7",
-                  "vinyl-source-stream": "^0.1.1",
-                  "gulp-minify-css": "0.4.4",
-                  "gulp-uglify": "^0.2.1",
-                  "gulp-mustache": "^1.0.2"
-                }
-              }
+              pre
+                code.
+                  {
+                    "resources": {
+                      "head": [
+                        {
+                          "type": "style",
+                          "src": "./themes/{{ options.theme }}.css"
+                        }
+                      ],
+                      "body": [
+                        {
+                          "type": "script",
+                          "src": "plugin.js"
+                        },
+                        {
+                          "type": "script",
+                          "contents": "Plugin.init(INSTALL_OPTIONS)"
+                        }
+                      ]
+                    },
+                    "options": {
+                      "properties": {
+                        "headerText": {
+                          "order": 1,
+                          "title": "Header Text",
+                          "description": "Appears above Plugin.",
+                          "type": "string"
+                        },
+                        "location": {
+                          "order": 2,
+                          "title": "Location",
+                          "description": "Choose a location for Plugin.",
+                          "type": "string",
+                          "format": "selector"
+                        },
+                        "theme": {
+                          "order": 3,
+                          "title": "Theme",
+                          "description": "Choose a theme for Plugin.",
+                          "type": "string",
+                          "enum": [
+                            "default",
+                            "flat",
+                            "skeuomorphic",
+                            "colorful",
+                            "minimal"
+                          ],
+                          "enumNames": {
+                            "default": "Default",
+                            "flat-and-trendy": "Flat and Trendy",
+                            "skeuomorphic": "Skeuomorphic",
+                            "colorful": "Colorful",
+                            "minimal":  "Minimal"
+                         },
+                          "default": "default"
+                        },
+                        "color": {
+                          "order": 4,
+                          "title": "Color",
+                          "showIf": {
+                            "theme": "colorful"
+                          },
+                          "description": "Choose a color.",
+                          "type": "string",
+                          "format": "color",
+                          "default": "#e90f92"
+                        }
+                      }
+                    }
+                  }
 
-    footer
-      p.created
-        | Created by&#32;
-        a.more(href="https://eager.io")
-          | Eager
+        li
+          a(href="http://package.json.is")
+            div
+              button.more.title
+                | package.json
+
+              pre
+                code.
+                  {
+                    "name": "App",
+                    "version": "1.3.0",
+                    "main": "app.js",
+                    "engines": {
+                      "node": "0.10.26"
+                    },
+                    "browserify": {
+                      "transform": [
+                        "coffeeify"
+                      ]
+                    },
+                    "scripts": {
+                      "test": "karma start tests/karma.conf.js",
+                      "test-single-run": "karma start tests/karma.conf.js --single-run"
+                    },
+                    "devDependencies": {
+                      "coffee-script": "^1.7.1",
+                      "gulp": "~3.6.2",
+                      "gulp-concat": "~2.1.7",
+                      "gulp-jshint": "~1.5.0",
+                      "gulp-angular-templatecache": "^1.1.0",
+                      "gulp-coffee": "~1.4.1",
+                      "gulp-util": "~2.2.14",
+                      "gulp-if": "~0.0.5",
+                      "gulp-jade": "~0.4.2",
+                      "gulp-stylus": "1.3.7",
+                      "browserify": "^4.1.6",
+                      "coffeeify": "^0.6.0",
+                      "nib": "^1.0.2",
+                      "marked": "^0.3.2",
+                      "gulp-bower": "0.0.4",
+                      "proxy-middleware": "^0.5.0",
+                      "gulp-rename": "~1.2.0",
+                      "gulp-markdown": "~0.1.2",
+                      "karma": "^0.12.16",
+                      "karma-jasmine": "~0.1.5",
+                      "karma-chrome-launcher": "~0.1.4",
+                      "karma-coffee-preprocessor": "^0.2.1",
+                      "karma-firefox-launcher": "~0.1.3",
+                      "protractor": "^0.24.0",
+                      "selenium-webdriver": "^2.42.0",
+                      "q": "^1.0.1",
+                      "gulp-shell": "^0.2.7",
+                      "vinyl-source-stream": "^0.1.1",
+                      "gulp-minify-css": "0.4.4",
+                      "gulp-uglify": "^0.2.1",
+                      "gulp-mustache": "^1.0.2"
+                    }
+                  }
+
+      footer
+        p.created
+          | Created by&#32;
+          a.more(href="https://eager.io")
+            | Eager
 
     script(src="js/app.js")

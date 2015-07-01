@@ -22,8 +22,6 @@ handleError = (err) ->
 
   @emit 'end'
 
-  process.exit(1)
-
 STYLUS_OPTS =
   use: [nib()]
   errors: true

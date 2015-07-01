@@ -41,6 +41,12 @@ editorWithCodeOverlayLargeMaxWidthQuery = "(max-width: " + (navigationWidth + co
 
 mobileMessageMaxWidthQuery = "(max-width: " + (smallNavigationWidth + minimumEditorWidth + 5em) + ")"
 
+::-moz-selection
+  background #e0dae0
+
+::selection
+  background #e0dae0
+
 html
   antialiasedFonts()
   font-size 16px
@@ -204,7 +210,6 @@ ul.side-navigation-list
     max-height 100vh
     overflow-y scroll
     -webkit-overflow-scrolling touch
-    padding 21px
     line-height 1.3em
     background #fff
     opacity 0
@@ -213,37 +218,13 @@ ul.side-navigation-list
     @media editorWithCodeOverlayLargeMinWidthQuery
       width codeOverlayWidthLarge
 
-    &:after
-      content "Scroll down"
-      display block
-      position fixed
-      font-size .85em
-      font-weight bold
-      text-transform uppercase
-      letter-spacing .02em
-      text-indent @letter-spacing
-      line-height 1em
-      padding .7em 15px .6em 0 // 15px later set by scrollbar width calculated with JS
-      bottom 0
-      right 0
-      width codeOverlayWidth
-      background #ff0093
-      color #fff
-      text-align center
-      transition opacity .2s ease
-      opacity 0
-      pointer-events none
-
-      @media editorWithCodeOverlayLargeMinWidthQuery
-        width codeOverlayWidthLarge
-
     &[target-off-screen]
       display none !important
 
     &[overflow-y="true"]
 
-      &:after
-        opacity .6
+      .code-overlay-content
+        animation bounceInUp .8s
 
       &:hover:after
         opacity 0
@@ -251,9 +232,6 @@ ul.side-navigation-list
     @media editorWithCodeOverlayMinWidthQuery
       opacity 1
       pointer-events all
-
-    &:empty
-      display none !important
 
     h4, h5
       font-weight bold
@@ -275,11 +253,39 @@ ul.side-navigation-list
       word-wrap normal
       overflow-x auto
 
-    > *:first-child
-      margin-top 0
+    .code-overlay-content
+      transform translate3d(0, 0, 0)
+      padding 21px
 
-    > *:last-child
-      margin-bottom 0
+      &:empty
+        display none
+
+      > *:first-child
+        margin-top 0
+
+      > *:last-child
+        margin-bottom 0
+
+@keyframes bounceInUp
+  0%, 60%, 75%, 90%, 100%
+    animation-timing-function cubic-bezier(.215, .610, .355, 1)
+
+  0%
+    opacity 0
+    transform translate3d(0, 150px, 0)
+
+  60%
+    opacity 1
+    transform translate3d(0, -20px, 0)
+
+  75%
+    transform translate3d(0, 10px, 0)
+
+  90%
+    transform translate3d(0, -5px, 0)
+
+  100%
+    transform translate3d(0, 0, 0)
 
 // Ace editor styles
 
@@ -349,6 +355,10 @@ html.json-is-home-page
 
   body
     padding 5em 1em
+    min-height 100vh
+    display flex
+    align-items center
+    justify-content center
 
   header a
     color #fff
@@ -362,6 +372,14 @@ html.json-is-home-page
     display flex
     list-style none
     padding 0
+    perspective 1000px
+
+    > *:hover
+      -webkit-transform translate3d(0, 0, -1.2rem)
+      -moz-transform translate3d(0, 0, -1.2rem)
+      -o-transform translate3d(0, 0, -1.2rem)
+      -ms-transform translate3d(0, 0, -1.2rem)
+      transform translate3d(0, 0, -1.2rem)
 
     @media (max-width 50em)
       display block
@@ -369,40 +387,54 @@ html.json-is-home-page
     > li
       flex 1
       padding 1.5em
+      transition transform .3s
+      display inline-block
+      perspective 100rem
 
       > a
         display block
         height 20em
-        padding-top 2em
-        background rgba(#fff, .06)
         color #fff
         border-radius 3px
-        overflow hidden
         user-select none
-        transition all .13s ease
+        transition color .13s ease, background-color .13s ease, transform .3s
+        perspective 100rem
+
+        > div
+          padding-top 2em
+          background rgba(#fff, .06)
+          transition background-color .13s ease
 
         &:hover
-          background #fff
           color #000
 
-        > button.more.title
-          position relative
-          background none
-          border 0
-          padding 0
-          font-size 2em
-          color inherit
-          letter-spacing -0.025em
+          > div
+            background #fff
 
-        > pre
-          padding 1em
-          text-align left
-          margin 0
-          white-space pre
-          word-wrap normal
+        > div
+          display block
+          height 20em
+          width 100%
           overflow hidden
-          font-size .8em
-          color #61324b
+
+          > button.more.title
+            position relative
+            background none
+            border 0
+            padding 0
+            font-size 2em
+            color inherit
+            letter-spacing -0.025em
+
+          > pre
+            padding 1em
+            text-align left
+            margin 0
+            white-space pre
+            word-wrap normal
+            overflow hidden
+            font-size .8em
+            color #61324b
 
   footer
     color rgba(#fff, .6)
