@@ -118,6 +118,7 @@ editorSession.setTabSize 2
 editorSession.setUseWrapMode true
 editorSession.setUseSoftTabs true
 editor.setOption 'vScrollBarAlwaysVisible', true
+editor.setOption 'scrollPastEnd', true
 
 setWrapBasedOnViewportWidth()
 window.addEventListener 'resize', -> setWrapBasedOnViewportWidth()
