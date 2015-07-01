@@ -2,7 +2,7 @@ context =
   'default': '''
     <h4>bower.json</h4>
 
-    <p>Web sites are made of lots of things — frameworks, libraries, assets, utilities, and rainbows. Bower manages all these things for you.</p>
+    <p>Web sites are made of lots of things — frameworks, libraries, assets, utilities, and rainbows. <a href="http://bower.io/">Bower</a> manages all these things for you.</p>
 
     <p>Bower works by fetching and installing packages from all over, taking care of hunting, finding, downloading, and saving the stuff you’re looking for. Bower keeps track of these packages in a manifest file, bower.json. How you use packages is up to you. Bower provides hooks to facilitate using packages in your tools and workflows.</p>
 
@@ -78,23 +78,30 @@ context =
   'description': '''
     <h4>Description</h4>
 
-    <p>Any character. Max 140.</p>
-
     <p>Help users identify and search for your package with a brief description. Describe what your package does, rather than what it's made of. Will be displayed in search/lookup results on the CLI and the website that can be used to search for packages.</p>
+
+    <p>Can contain any characters, but should be 140 characters or less.</p>
   '''
 
   'version': '''
     <h4>Version</h4>
 
-    <p>Ignored by Bower as git tags are used instead.</p>
+    <p>Ignored by Bower as <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a> <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">git tags</a> are used instead.</p>
 
     <p><em>Intended to be used in the future when Bower gets a real registry where you can publish actual packages, but for now just leave it out.</em></p>
   '''
 
-  'authors': '''
+  'authors(\.INDEX)?': '''
     <h4>Authors</h4>
 
     <p>A list of people that authored the contents of the package.</p>
+
+    <p>Any of these formats are acceptable:</p>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li><code>John Doe</code>
+      <li><code>John Doe &lt;john@doe.com&gt;</code>
+      <li><code>John Doe &lt;john@doe.com&gt; (johndoe.com)</code>
+    </ul>
   '''
 
   'licence': '''
@@ -103,10 +110,10 @@ context =
     <p><a href="https://spdx.org/licenses/">SPDX license identifier</a> or path/url to a license.</p>
   '''
 
-  'ignore': '''
+  'ignore(\.INDEX)?': '''
     <h4>Ignore</h4>
 
-    <p>A list of files for Bower to ignore when installing your package.</p>
+    <p>An array of file and folder paths for Bower to ignore when installing your package.  Glob patterns like <code>*.js</code> may be used.</p>
   '''
 
   'devDependencies': '''
@@ -118,10 +125,24 @@ context =
   'dependencies': '''
     <h4>Dependencies</h4>
 
-    <p>Dependencies are specified with a simple hash of package name to a semver compatible identifier or URL.</p>
+    <p>Dependencies are specified with a simple hash of package name to a <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a> compatible identifier or URL.</p>
 
     <ul>
       <li>Key must be a valid name.</li>
+      <li>Value must be a valid version, a Git URL, or a URL (inc. tarball and zipball).</li>
+      <li>Git URLs can be restricted to a reference (revision SHA, branch, or tag) by appending it after a hash, e.g. <code>https://github.com/owner/package.git#branch</code>.</li>
+      <li>Value can be an owner/package shorthand, i.e. owner/package. By default, the shorthand resolves to GitHub -&gt; git://github.com/{{owner}}/{{package}}.git. This may be changed in <code>.bowerrc</code> <a href="http://bower.io/docs/config/#shorthand-resolver">shorthand_resolver</a>.</li>
+      <li>Local paths may be used as values for local development, but they will be disallowed when registering.</li>
+    </ul>
+  '''
+
+  '(dependencies|devDependencies)\.PROPERTY': '''
+    <h4>Dependency</h4>
+
+    <p>Each dependency is specified with it’s name, and either a <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a> compatible version or URL.</p>
+
+    <ul>
+      <li>Key must be a valid project name.</li>
       <li>Value must be a valid version, a Git URL, or a URL (inc. tarball and zipball).</li>
       <li>Git URLs can be restricted to a reference (revision SHA, branch, or tag) by appending it after a hash, e.g. <code>https://github.com/owner/package.git#branch</code>.</li>
       <li>Value can be an owner/package shorthand, i.e. owner/package. By default, the shorthand resolves to GitHub -&gt; git://github.com/{{owner}}/{{package}}.git. This may be changed in <code>.bowerrc</code> <a href="http://bower.io/docs/config/#shorthand-resolver">shorthand_resolver</a>.</li>
@@ -133,6 +154,18 @@ context =
     <h4>Homepage</h4>
 
     <p>URL to learn more about the package. Falls back to GitHub project if not specified and it’s a GitHub endpoint.</p>
+  '''
+
+  'resolutions(\.PROPERTY)?': '''
+    <h4>Resolutions</h4>
+
+    <p>Dependency versions to use if conflicts occur between packages.  Usually added by the bower tool when versions are manually resolved by the user.</p>
+  '''
+
+  'private': '''
+    <h4>Private</h4>
+
+    <p>Set to <code>true</code> if you do not wish this project to ever be published publically.
   '''
 
 module.exports = context
