@@ -137,7 +137,7 @@ context =
     <p>If the user didn’t change the default text <code>"Welcome!"</code>, the developer would get passed back the following:</p>
 
     <pre><code>{
-      "headerText": "Welcome!
+      "headerText": "Welcome!"
     }</code></pre>
   '''
 
@@ -188,68 +188,50 @@ context =
 
     <p>Element to be placed on the end-user’s website</p>
 
-    <pre><code>{
-      "type": "string",
-      "format": "element"
-    }</code></pre>
+    <pre><code>"type": "string",
+    "format": "element"</code></pre>
 
     <p>Location (CSS selector) on the end-user’s website</p>
 
-    <pre><code>{
-      "type": "string",
-      "format": "selector"
-    }</code></pre>
+    <pre><code>"type": "string",
+    "format": "selector"</code></pre>
 
     <p>Image</p>
 
-    <pre><code>{
-      "type": "string",
-      "format": "image"
-    }</code></pre>
+    <pre><code>"type": "string",
+    "format": "image"</code></pre>
 
     <p>Color</p>
 
-    <pre><code>{
-      "type": "string",
-      "format": "color"
-    }</code></pre>
+    <pre><code>"type": "string",
+    "format": "color"</code></pre>
 
     <p>String</p>
 
-    <pre><code>{
-      "type": "string"
-    }</code></pre>
+    <pre><code>"type": "string"</code></pre>
 
     <p>Number</p>
 
-    <pre><code>{
-      "type": "number"
-    }</code></pre>
+    <pre><code>"type": "number"</code></pre>
 
     <p>Integer</p>
 
-    <pre><code>{
-      "type": "integer"
-    }</code></pre>
+    <pre><code>"type": "integer"</code></pre>
 
     <p>Boolean</p>
 
-    <pre><code>{
-      "type": "boolean"
-    }</code></pre>
+    <pre><code>"type": "boolean"</code></pre>
 
     <p>String with fixed set of options</p>
 
-    <pre><code>{
-      "type": "string",
-      "enum": [
-        "option-a",
-        "option-b"
-      ],
-      "enumNames": {
-        "option-a": "Option A",
-        "option-b": "Option B"
-      }
+    <pre><code>"type": "string",
+    "enum": [
+      "option-a",
+      "option-b"
+    ],
+    "enumNames": {
+      "option-a": "Option A",
+      "option-b": "Option B"
     }</code></pre>
 
     <hr>
@@ -258,18 +240,14 @@ context =
 
     <p>Nested set of options</p>
 
-    <pre><code>{
-      "type": "object",
-      "properties": { ... }
-    }</code></pre>
+    <pre><code>"type": "object",
+    "properties": { ... }</code></pre>
 
     <p>Array</p>
 
-    <pre><code>{
-      "type": "array",
-      "items": {
-        "type": "[ Any primitive option type or container option type ]"
-      }
+    <pre><code>"type": "array",
+    "items": {
+      "type": "<em>Any primitive/container option type</em>"
     }</code></pre>
   '''
 

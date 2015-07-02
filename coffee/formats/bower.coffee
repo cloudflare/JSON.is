@@ -97,7 +97,7 @@ context =
     <p>A list of people that authored the contents of the package.</p>
 
     <p>Any of these formats are acceptable:</p>
-    <ul style="list-style-type: none; padding-left: 0;">
+    <ul>
       <li><code>John Doe</code>
       <li><code>John Doe &lt;john@doe.com&gt;</code>
       <li><code>John Doe &lt;john@doe.com&gt; (johndoe.com)</code>
@@ -130,7 +130,7 @@ context =
     <ul>
       <li>Key must be a valid name.</li>
       <li>Value must be a valid version, a Git URL, or a URL (inc. tarball and zipball).</li>
-      <li>Git URLs can be restricted to a reference (revision SHA, branch, or tag) by appending it after a hash, e.g. <code>https://github.com/owner/package.git#branch</code>.</li>
+      <li>Git URLs can be restricted to a reference (revision SHA, branch, or tag) by appending it after a hash, e.g. <code class="inline">https://github.com/owner/package.git#branch</code>.</li>
       <li>Value can be an owner/package shorthand, i.e. owner/package. By default, the shorthand resolves to GitHub -&gt; git://github.com/{{owner}}/{{package}}.git. This may be changed in <code>.bowerrc</code> <a href="http://bower.io/docs/config/#shorthand-resolver">shorthand_resolver</a>.</li>
       <li>Local paths may be used as values for local development, but they will be disallowed when registering.</li>
     </ul>
