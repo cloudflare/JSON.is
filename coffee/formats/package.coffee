@@ -343,8 +343,8 @@ context =
 
     <ul>
       <li>The URL to a tarball
-      <li>The URL to a git repo (<code>git://github.com/user/project.git#commit-ish</code>)
-      <li>A GitHub repo (<code>visionmedia/mocha#4727d357ea</code>)
+      <li>The URL to a git repo: <code>git://github.com/user/project.git#commit-ish</code>
+      <li>A GitHub repo: <code>visionmedia/mocha#4727d357ea</code>
     </ul>
 
     <p>As in those examples, it’s usually a good idea to specify a specific commit or tag when using git URLs (by appending the identifier after the “#” symbol).</p>
