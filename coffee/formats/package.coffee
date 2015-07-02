@@ -15,7 +15,7 @@ context =
   'default': '''
     <h4>package.json</h4>
 
-    <p>All npm packages contain a file, usually in the project root, called package.json - this file holds various metadata relevant to the project. This file is used to give information to npm that allows it to identify the project as well as handle the project's dependencies. It can also contain other metadata such as a project description, the version of the project in a particular distribution, license information, even configuration data - all of which can be vital to both npm and to the end users of the package. The package.json file is normally located at the root directory of a Node.js project.</p>
+    <p>All npm packages contain a file, usually in the project root, called package.json - this file holds various metadata relevant to the project. This file is used to give information to npm that allows it to identify the project as well as handle the project’s dependencies. It can also contain other metadata such as a project description, the version of the project in a particular distribution, license information, even configuration data - all of which can be vital to both npm and to the end users of the package. The package.json file is normally located at the root directory of a Node.js project.</p>
 
     <pre><code>{
       "name": "App",
@@ -36,17 +36,17 @@ context =
     <p>Some rules:</p>
     <ul>
       <li>The name must be shorter than 214 characters. This includes the scope for scoped packages.
-      <li>The name can't start with a dot or an underscore.
+      <li>The name can’t start with a dot or an underscore.
       <li>New packages must not have uppercase letters in the name.
-      <li>The name ends up being part of a URL, an argument on the command line, and a folder name. Therefore, the name can't contain any non-URL-safe characters.
+      <li>The name ends up being part of a URL, an argument on the command line, and a folder name. Therefore, the name can’t contain any non-URL-safe characters.
     </ul>
 
     <p>Some tips:</p>
     <ul>
-      <li>Don't use the same name as a core Node module.
-      <li>Don't put "js" or "node" in the name.  It's assumed that it's js, since you're writing a package.json file, and you can specify the engine using the "engines" field.
+      <li>Don’t use the same name as a core Node module.
+      <li>Don’t put “js” or “node” in the name. It’s assumed that it’s js, since you’re writing a package.json file, and you can specify the engine using the “engines” field.
       <li>The name will probably be passed as an argument to require(), so it should be something short, but also reasonably descriptive.
-      <li>You may want to check the <a href="https://npmjs.com">npm registry</a> to see if there's something by that name already, before you get too attached to it.
+      <li>You may want to check the <a href="https://npmjs.com">npm registry</a> to see if there’s something by that name already, before you get too attached to it.
     </ul>
 
     <p>A name can be optionally prefixed by a scope, e.g. <code>@myorg/mypackage</code>.</p>
@@ -55,13 +55,13 @@ context =
   'version': '''
     <h4>Version</h4>
 
-    <p>The version must be a <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a> version identifier.  Changes to the package should come along with changes to the version.</p>
+    <p>The version must be a <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a> version identifier. Changes to the package should come along with changes to the version.</p>
   '''
 
   'description': '''
     <h4>Description</h4>
 
-    <p>The description should be a string of human-readable information about the package.  It's listed on <a href="https://npmjs.com">npmjs.com</a> and in the output of <code>npm search</code>.</p>
+    <p>The description should be a string of human-readable information about the package. It’s listed on <a href="https://npmjs.com">npmjs.com</a> and in the output of <code>npm search</code>.</p>
   '''
 
   'keywords(\.INDEX)?': '''
@@ -79,15 +79,15 @@ context =
   'bugs(\.PROPERTY)?': '''
     <h4>Bugs</h4>
 
-    <p>The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.</p>
+    <p>The url to your project’s issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.</p>
 
     <p>It should look like this:</p>
-    <pre><code>{ "url" : "https://github.com/owner/project/issues",
-      "email" : "project@hostname.com"
-    }
-    </code></pre>
+    <pre><code>{
+      "url": "https://github.com/owner/project/issues",
+      "email": "project@hostname.com"
+    }</code></pre>
 
-    <p>You can specify either one or both values. If you want to provide only a url, you can specify the value for "bugs" as a simple string instead of an object.</p>
+    <p>You can specify either one or both values. If you want to provide only a url, you can specify the value for “bugs” as a simple string instead of an object.</p>
 
     <p>If a url is provided, it will be used by the <code>npm bugs</code> command.</p>
   '''
@@ -99,32 +99,33 @@ context =
 
     <p>If you&apos;re using a common license such as BSD-2-Clause or MIT, add a current SPDX license identifier for the license you&apos;re using, like this:</p>
 
-    <pre><code>{ "license" : "BSD-3-Clause" }</code></pre>
+    <pre><code>{ "license": "BSD-3-Clause" }</code></pre>
 
     <p>You can check <a href="https://spdx.org/licenses/">the full list of SPDX license IDs</a>.
 
     <p>If your package is licensed under multiple common licenses, use an <a href="http://npmjs.com/package/spdx">SPDX license expression syntax version 2.0 string</a>, like this:</p>
-    <pre><code>{ "license" : "(ISC OR GPL-3.0)" }</code></pre>
+    <pre><code>{ "license": "(ISC OR GPL-3.0)" }</code></pre>
 
     <p>If you are using a license that hasn&apos;t been assigned an SPDX identifier, or if you are using a custom license, use the following valid SPDX expression:</p>
-    <pre><code>{ "license" : "SEE LICENSE IN &lt;filename&gt;" }</code></pre>
+    <pre><code>{ "license": "SEE LICENSE IN &lt;filename&gt;" }</code></pre>
 
     <p>Then include a file named <code>&lt;filename&gt;</code> at the top level of the package.</p>
 
     <p>If you do not wish to grant others the right to use a private or unpublished package under any terms:</p>
-    <pre><code>{ "license": "UNLICENSED"}</code></pre>
+    <pre><code>{ "license": "UNLICENSED" }</code></pre>
   '''
 
   '(author|contributors)': '''
     <h4>Author / Contributors</h4>
 
-    <p>Who created and maintains this project?.  Provide a single person as the <code>author</code> field or an array of multiple people as the <code>contributors</code> field.</p>
+    <p>Who created and maintains this project? Provide a single person as the <code>author</code> field or an array of multiple people as the <code>contributors</code> field.</p>
 
     <p>Each person may be described as with object:</p>
 
-    <pre><code>{ "name" : "Barney Rubble",
-      "email" : "b@rubble.com",
-      "url" : "http://barnyrubble.tumblr.com/"
+    <pre><code>{
+      "name": "Barney Rubble",
+      "email": "b@rubble.com",
+      "url": "http://barnyrubble.tumblr.com/"
     }</code></pre>
 
     <p>Or a string:</p>
@@ -139,9 +140,10 @@ context =
 
     <p>Each contributor may be described as with object:</p>
 
-    <pre><code>{ "name" : "Barney Rubble",
-      "email" : "b@rubble.com",
-      "url" : "http://barnyrubble.tumblr.com/"
+    <pre><code>{
+      "name": "Barney Rubble",
+      "email": "b@rubble.com",
+      "url": "http://barnyrubble.tumblr.com/"
     }</code></pre>
 
     <p>Or a string:</p>
@@ -158,7 +160,7 @@ context =
 
     <p>You may use glob patterns like <code>*.js</code>, and specify folders like <code>src/</code>.</p>
 
-    <p>You can also provide a ".npmignore" file in the root of your package, which will keep files from being included, even if they would be picked up by the files array.</p>
+    <p>You can also provide a <code>.npmignore</code> file in the root of your package, which will keep files from being included, even if they would be picked up by the files array.</p>
   '''
 
   'files\.INDEX': '''
@@ -182,11 +184,11 @@ context =
 
     <p><code>bin</code> allows you to install one or more executable files onto the <code>PATH</code> of this machine so they can be executed from the terminal.</p>
 
-    <p>For example, if you'd like your <code>cli.js</code> file to be executed when the user runs <code>myapp</code> on the command line, you could specify:</p>
+    <p>For example, if you’d like your <code>cli.js</code> file to be executed when the user runs <code>myapp</code> on the command line, you could specify:</p>
 
-    <pre><code>{ "bin" : { "myapp" : "./cli.js" } }</code></pre>
+    <pre><code>{ "bin": { "myapp": "./cli.js" } }</code></pre>
 
-    <p>If you only have a single executable, and you'd like the command line program to have the same name as your package, you can just specify the file to be executed as a string:</p>
+    <p>If you only have a single executable, and you’d like the command line program to have the same name as your package, you can just specify the file to be executed as a string:</p>
 
     <pre><code>"bin": "./path/to/program"</code></pre>
   '''
@@ -194,7 +196,7 @@ context =
   'man': '''
     <h4>Man</h4>
 
-    <p>The man program is used by many UNIX-y operating systems to help users access documentation.  If you have one or more man pages for your project, specify them with the <code>man</code> option.</p>
+    <p>The man program is used by many UNIX-y operating systems to help users access documentation. If you have one or more man pages for your project, specify them with the <code>man</code> option.</p>
 
     <p>The option can either be specified as a single filepath, or as an array of files.</p>
   '''
@@ -205,15 +207,15 @@ context =
     <p>Specify the place where your code lives.</p>
 
     <p>For example:</p>
+
     <pre><code>{
-        "type" : "git",
-        "url" : "https://github.com/npm/npm.git"
-      }
-    </code></pre>
+      "type": "git",
+      "url": "https://github.com/npm/npm.git"
+    }</code></pre>
 
     <p>The URL should be a publicly available (perhaps read-only) url that can be handed
-    directly to a VCS program without any modification.  It should not be a url to an
-    html project page that you put in your browser.  It's for computers.</p>
+    directly to a VCS program without any modification. It should not be a url to an
+    html project page that you put in your browser. It’s for computers.</p>
 
     <p>For GitHub, GitHub gist, Bitbucket, or GitLab repositories you can use the same
     shortcut syntax you use for <code>npm install</code>:</p>
@@ -259,9 +261,9 @@ context =
   'config(\.PROPERTY)?': '''
     <h4>Config</h4>
 
-    <p>npm supports configuration variables which can be set by the user using <code>npm config</code>.  The <code>config</code> option can be used to set defaults for these options.</p>
+    <p>npm supports configuration variables which can be set by the user using <code>npm config</code>. The <code>config</code> option can be used to set defaults for these options.</p>
 
-    <p>Config variables are available as environment variables.  For example, if you had the config:</p>
+    <p>Config variables are available as environment variables. For example, if you had the config:</p>
 
     <pre><code>"config": {
       "port": 8080
@@ -269,8 +271,7 @@ context =
 
     <p>It would be available as the <code>npm_package_config_port</code> environment variable in your scripts, and could be overrode by the user with:</p>
 
-    <pre><code>npm config set foo:port 8001
-    </code></pre>
+    <pre><code>npm config set foo:port 8001</code></pre>
   '''
 
   'dependencies': '''
@@ -284,21 +285,21 @@ context =
 
     <p>Dev dependencies work exactly as <code>dependencies</code>, but they are not installed when a user installs your package without downloading the source (unless they provide the <code>--dev</code> option).</p>
 
-    <p>It often makes sense to include build and test tools as dev dependencies, so end users don't have to install them if their not required to use the package.</p>
+    <p>It often makes sense to include build and test tools as dev dependencies, so end users don’t have to install them if their not required to use the package.</p>
   ''' + depInfo
 
   'peerDependencies': '''
     <h4>Peer Dependencies</h4>
 
-    <p>If you're building a plugin which interacts with another package, it's often valuable to express what versions of that package you support.</p>
+    <p>If you’re building a plugin which interacts with another package, it’s often valuable to express what versions of that package you support.</p>
 
-    <p>Peer dependencies allow you to express this compatibility.  Be as broad as you can, as npm will error if the user tries to use your plugin with an incompatible version.</p>
+    <p>Peer dependencies allow you to express this compatibility. Be as broad as you can, as npm will error if the user tries to use your plugin with an incompatible version.</p>
   ''' + depInfo
 
   'optionalDependencies': '''
     <h4>Optional Dependencies</h4>
 
-    <p>If a package in <code>dependencies</code> fails to install, the installation of your package will be aborted.  If you do not wish this to happen for some dependencies (i.e. your package can run without them), include them as optional dependencies.</p>
+    <p>If a package in <code>dependencies</code> fails to install, the installation of your package will be aborted. If you do not wish this to happen for some dependencies (i.e. your package can run without them), include them as optional dependencies.</p>
   ''' + depInfo
 
   'engines(\.PROPERTY)?': '''
@@ -308,30 +309,29 @@ context =
 
     <p>For example:</p>
 
-    <pre><code>{ "engines" : { "node" : ">=0.10.3 <0.12" } }</code></pre>
+    <pre><code>{ "engines": { "node": ">=0.10.3 <0.12" } }</code></pre>
   '''
 
   '(dependencies|optionalDependencies|peerDependencies|devDependencies)\.PROPERTY': '''
     <h4>Dependency</h4>
 
-    <p>A dependency specifies a package which this project utilizes.  It is usually a package which is published to the npm registry, but it can also be anything hosted on the internet or even a local folder.</p>
+    <p>A dependency specifies a package which this project utilizes. It is usually a package which is published to the npm registry, but it can also be anything hosted on the internet or even a local folder.</p>
 
     <p>When using the npm registry, specify a package name and a version string:</p>
 
     <pre><code>"vex": "1.4.3"</code></pre>
 
-    <p>The version string should use <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a>.  You can use <code>&lt;</code> and <code>&gt;</code> to specify ranges, for example:
+    <p>The version string should use <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a>. You can use <code>&lt;</code> and <code>&gt;</code> to specify ranges, for example:
 
     <pre><code>"vex": ">1.2.3 <2.0.0"</code></pre>
 
     The <code>~</code> and <code>^</code> shorthands are also available:
 
-    <pre><code>
-    ~1.2.3    : is >=1.2.3 <1.3.0
+    <pre><code>~1.2.3   : is >=1.2.3 <1.3.0
 
-    ^1.2.3    : is >=1.2.3 <2.0.0
-    ^0.2.3    : is >=0.2.3 <0.3.0   (0.x.x is special)
-    ^0.0.1    : is  =0.0.1          (0.0.x is special)
+    ^1.2.3   : is >=1.2.3 <2.0.0
+    ^0.2.3   : is >=0.2.3 <0.3.0  (0.x.x is special)
+    ^0.0.1   : is  =0.0.1         (0.0.x is special)
     </code></pre>
 
     <p>In the version field you can also specify:</p>
@@ -342,13 +342,13 @@ context =
       <li>A GitHub repo (<code>visionmedia/mocha#4727d357ea</code>)
     </ul>
 
-    <p>As in those examples, it's usually a good idea to specify a specific commit or tag when using git URLs (by appending the identifier after the "#" symbol).</p>
+    <p>As in those examples, it’s usually a good idea to specify a specific commit or tag when using git URLs (by appending the identifier after the “#” symbol).</p>
   '''
 
   'bundledDependencies(\.INDEX)?': '''
     <h4>Bundled Dependencies</h4>
 
-    <p>Occasionally it's helpful to include a local copy of a dependency (it's folder in <code>node_modules/</code>) with the project when it's published.</p>
+    <p>Occasionally it’s helpful to include a local copy of a dependency (it’s folder in <code>node_modules/</code>) with the project when it’s published.</p>
 
     <p>Bundled dependencies are specified as an array of package names, like:</p>
 
@@ -362,11 +362,11 @@ context =
 
     <p><code>os</code> allows you to specify which operating systems your package will run on.</p>
 
-    <p>You can specify a list of OS' it works on:</p>
+    <p>You can specify a list of OS’ it works on:</p>
 
     <pre><code>["darwin", "linux"]</code></pre>
 
-    <p>Or a list it doesn't work on:</p>
+    <p>Or a list it doesn’t work on:</p>
 
     <pre><code>["!win32"]</code></pre>
 
@@ -382,7 +382,7 @@ context =
 
     <pre><code>["x64", "ia32"]</code></pre>
 
-    <p>Or a list it doesn't work on:</p>
+    <p>Or a list it doesn’t work on:</p>
 
     <pre><code>["!mips"]</code></pre>
 
@@ -406,7 +406,7 @@ context =
   'publishConfig': '''
     <h4>Publish Config</h4>
 
-    <p>This is a set of config values that will be used at publish-time. It's especially handy if you want to set the tag or registry, so that you can ensure that a given package is not tagged with "latest" or published to the global public registry by default.</p>
+    <p>This is a set of config values that will be used at publish-time. It’s especially handy if you want to set the tag or registry, so that you can ensure that a given package is not tagged with “latest” or published to the global public registry by default.</p>
 
     <p>See <code>npm help config</code> to see the list of config options that can be overridden.</p>
   '''
