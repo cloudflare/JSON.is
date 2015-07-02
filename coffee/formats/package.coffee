@@ -1,7 +1,7 @@
-depInfo = '''
+depInfo = (propertyName) -> """
   <p>The format is <code>"PACKAGE_NAME": "VERSION"</code>, for example:</p>
 
-  <pre><code>{
+  <pre><code>"#{ propertyName }": {
     "coffee-script": "1.6.1",
     "gulp": "~3.6.2"
   }</code></pre>
@@ -9,7 +9,7 @@ depInfo = '''
   <p>Packages can be found using the <code>npm search</code> command, or on <a href="http://npmjs.com">npmjs.com</a>.</p>
 
   <p>Version requirements are specified using <a href="http://ricostacruz.com/cheatsheets/semver.html">semver</a>.</p>
-'''
+"""
 
 context =
   'default': '''
@@ -82,12 +82,15 @@ context =
     <p>The url to your project’s issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.</p>
 
     <p>It should look like this:</p>
-    <pre><code>{
+
+    <pre><code>"bugs": {
       "url": "https://github.com/owner/project/issues",
       "email": "project@hostname.com"
     }</code></pre>
 
     <p>You can specify either one or both values. If you want to provide only a url, you can specify the value for “bugs” as a simple string instead of an object.</p>
+
+    <pre><code>"bugs": "https://github.com/owner/project/issues"</code></pre>
 
     <p>If a url is provided, it will be used by the <code>npm bugs</code> command.</p>
   '''
@@ -99,20 +102,20 @@ context =
 
     <p>If you&apos;re using a common license such as BSD-2-Clause or MIT, add a current SPDX license identifier for the license you&apos;re using, like this:</p>
 
-    <pre><code>{ "license": "BSD-3-Clause" }</code></pre>
+    <pre><code>"license": "BSD-3-Clause"</code></pre>
 
     <p>You can check <a href="https://spdx.org/licenses/">the full list of SPDX license IDs</a>.
 
     <p>If your package is licensed under multiple common licenses, use an <a href="http://npmjs.com/package/spdx">SPDX license expression syntax version 2.0 string</a>, like this:</p>
-    <pre><code>{ "license": "(ISC OR GPL-3.0)" }</code></pre>
+    <pre><code>"license": "(ISC OR GPL-3.0)"</code></pre>
 
     <p>If you are using a license that hasn&apos;t been assigned an SPDX identifier, or if you are using a custom license, use the following valid SPDX expression:</p>
-    <pre><code>{ "license": "SEE LICENSE IN &lt;filename&gt;" }</code></pre>
+    <pre><code>"license": "SEE LICENSE IN &lt;filename&gt;"</code></pre>
 
     <p>Then include a file named <code>&lt;filename&gt;</code> at the top level of the package.</p>
 
     <p>If you do not wish to grant others the right to use a private or unpublished package under any terms:</p>
-    <pre><code>{ "license": "UNLICENSED" }</code></pre>
+    <pre><code>"license": "UNLICENSED"</code></pre>
   '''
 
   '(author|contributors)': '''
@@ -176,7 +179,7 @@ context =
 
     <p>The main field informs npm which file should be loaded when a user attempts to <code>require()</code> your package.</p>
 
-    <p>For example, if your package is called <code>app<code> and you specify the main property as <code>"main.js"</code>, when the user runs <code>require('app')</code>, your <code>main.js</code> file will be loaded.</p>
+    <p>For example, if your package is called <code>app</code> and you specify the main property as <code>"main.js"</code>, when the user runs <code>require('app')</code>, your <code>main.js</code> file will be loaded.</p>
   '''
 
   'bin(\.PROPERTY)?': '''
@@ -186,7 +189,7 @@ context =
 
     <p>For example, if you’d like your <code>cli.js</code> file to be executed when the user runs <code>myapp</code> on the command line, you could specify:</p>
 
-    <pre><code>{ "bin": { "myapp": "./cli.js" } }</code></pre>
+    <pre><code>"bin": { "myapp": "./cli.js" }</code></pre>
 
     <p>If you only have a single executable, and you’d like the command line program to have the same name as your package, you can just specify the file to be executed as a string:</p>
 
@@ -251,7 +254,7 @@ context =
 
     <p>The command can be any executable:</p>
 
-    <pre><code>{
+    <pre><code>"scripts": {
       "prepublish": "rm -r build; gulp build"
     }</code></pre>
 
@@ -278,7 +281,7 @@ context =
     <h4>Dependencies</h4>
 
     <p>Dependencies allow you to specify what other npm packages your code requires, and at which versions.</p>
-  ''' + depInfo
+  ''' + depInfo('dependencies')
 
   'devDependencies': '''
     <h4>Dev Dependencies</h4>
@@ -286,7 +289,7 @@ context =
     <p>Dev dependencies work exactly as <code>dependencies</code>, but they are not installed when a user installs your package without downloading the source (unless they provide the <code>--dev</code> option).</p>
 
     <p>It often makes sense to include build and test tools as dev dependencies, so end users don’t have to install them if their not required to use the package.</p>
-  ''' + depInfo
+  ''' + depInfo('devDependencies')
 
   'peerDependencies': '''
     <h4>Peer Dependencies</h4>
@@ -294,13 +297,13 @@ context =
     <p>If you’re building a plugin which interacts with another package, it’s often valuable to express what versions of that package you support.</p>
 
     <p>Peer dependencies allow you to express this compatibility. Be as broad as you can, as npm will error if the user tries to use your plugin with an incompatible version.</p>
-  ''' + depInfo
+  ''' + depInfo('peerDependencies')
 
   'optionalDependencies': '''
     <h4>Optional Dependencies</h4>
 
     <p>If a package in <code>dependencies</code> fails to install, the installation of your package will be aborted. If you do not wish this to happen for some dependencies (i.e. your package can run without them), include them as optional dependencies.</p>
-  ''' + depInfo
+  ''' + depInfo('optionalDependencies')
 
   'engines(\.PROPERTY)?': '''
     <h4>Engines</h4>
@@ -309,7 +312,9 @@ context =
 
     <p>For example:</p>
 
-    <pre><code>{ "engines": { "node": ">=0.10.3 <0.12" } }</code></pre>
+    <pre><code>"engines": {
+      "node": ">=0.10.3 <0.12"
+    }</code></pre>
   '''
 
   '(dependencies|optionalDependencies|peerDependencies|devDependencies)\.PROPERTY': '''
