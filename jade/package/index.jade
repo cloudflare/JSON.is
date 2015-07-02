@@ -9,9 +9,20 @@ block title
 block code
   #editor.
     {
-      "name": "App",
+      "name": "json.is",
       "version": "1.3.0",
+      "private": true,
+      "description": "Open-source documentation for common JSON formats",
+      "keywords": ["web-app", "static", "documentation"],
+      "homepage": "http://package.json.is",
+      "bugs": "https://github.com/eagerio/json.is/issues",
+      "license": "MIT",
+      "files": ["src/*", "README.md"],
+      "bin": "./cli.js",
       "main": "app.js",
+      "config": {
+        "env": "development"
+      },
       "engines": {
         "node": "0.10.26"
       },
