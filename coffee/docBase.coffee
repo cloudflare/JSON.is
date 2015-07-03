@@ -96,7 +96,7 @@ positionCodeOverlay = ->
 
 setEditorOverlayContext = (item) ->
   contextHTML = ''
-  item = path: 'default' if not item.path
+  item = path: '' if not item?.path
   for k, re of reCache
     if re.test item.path
       if typeof context[k] is 'function'
@@ -161,7 +161,7 @@ processContext = (context) ->
 
 processContext context
 
-setEditorOverlayContext 'default'
+setEditorOverlayContext()
 
 setUpShare = ->
   _Drop = Drop.createContext

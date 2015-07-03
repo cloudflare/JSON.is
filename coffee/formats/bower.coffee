@@ -1,5 +1,5 @@
 context =
-  'default': '''
+  '': '''
     <h4>bower.json</h4>
 
     <p>Web sites are made of lots of things — frameworks, libraries, assets, utilities, and rainbows. <a href="http://bower.io/">Bower</a> manages all these things for you.</p>

@@ -1,5 +1,5 @@
 context =
-  'default': '''
+  '': '''
     <h4>install.json</h4>
 
     <p>install.json is a description of how to include and configure (JavaScript, CSS, and HTML)-based projects into websites.</p>
