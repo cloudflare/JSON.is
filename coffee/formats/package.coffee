@@ -416,4 +416,48 @@ context =
     <p>See <code>npm help config</code> to see the list of config options that can be overridden.</p>
   '''
 
+  # Browserify
+  'browser': '''
+    <h4>Browser</h4>
+    <p><em><a href="https://github.com/substack/node-browserify">Browserify</a> specific</em></p>
+
+    <p>The <code>browser</code> field allows you to specify browser-specific versions of your files.  Rather than your <code>main</code> file, you might wish to have browserify use a different entry point when this module is bundled for the browser:</p>
+
+    <pre><code>"browser": "./browser.js"<code></pre>
+
+    <p>You can also override multiple files:</p>
+
+    <pre><code>"browser": {
+      "fs": "level-fs",
+      "./lib/ops.js": "./browser/opts.js"
+    }
+    </code></pre>
+  '''
+
+  'browserify\.transform(\.INDEX)?': '''
+    <h4>Transform</h4>
+    <p><em><a href="http://browserify.org/">Browserify</a> specific</em></p>
+
+    <p>Transforms are applied to your modules during the Browserify bundling process.  You can use them to do things like <a href="https://www.npmjs.com/package/brfs">include file contents</a> or <a href="https://github.com/jnordberg/coffeeify">compile CoffeeScript</a>.</p>
+
+    <p>For example, to enable the <code>brfs</code> transform:</p>
+
+    <pre><code>"browserify": {"transform": ["brfs"]}</code></pre>
+
+    <p>Be sure to include the necessary module in your <code>dependencies</code> or <code>devDependencies</code> as well.</p>
+  '''
+
+  'browserify': '''
+    <h4>Browserify</h4>
+
+    <p>The <code>browserify</code> section allows you to provide specific configuration to the <a href="http://browserify.org/">Browserify</a> bundler.</p>
+
+    <pre><code>"browserify": {
+      "transform": [
+        "coffeeify"
+      ]
+    },
+    </code></pre>
+  '''
+
 module.exports = context
