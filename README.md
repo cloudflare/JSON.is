@@ -10,7 +10,7 @@ Currently included:
 
 ## Contributing
 
-We welcome contributors of both improvements and additional json formats.
+We welcome contributors of both improvements and additional JSON formats.
 
 ### Format
 
