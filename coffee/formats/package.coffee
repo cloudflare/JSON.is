@@ -258,6 +258,8 @@ context =
       "prepublish": "rm -r build; gulp build"
     }</code></pre>
 
+    <p>You can also create a script with any name you like, and run it with <code>npm run SCRIPT_NAME</code>.</p>
+
     <p><a href="https://docs.npmjs.com/misc/scripts">More information</a> about scripts</p>
   '''
 
