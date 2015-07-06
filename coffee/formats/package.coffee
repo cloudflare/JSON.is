@@ -345,7 +345,7 @@ context =
 
     <ul>
       <li>The URL to a tarball
-      <li>The URL to a git repo: <code>git://github.com/user/project.git#commit-ish</code>
+      <li>The URL to a git repo: <code>git://github.com/user/project.git#commit</code>
       <li>A GitHub repo: <code>visionmedia/mocha#4727d357ea</code>
     </ul>
 
