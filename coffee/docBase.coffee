@@ -179,7 +179,7 @@ setUpShare = ->
     content: """
        <ul>
          <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F#{ format }.json.is" target="_blank" class="share-icon-facebook">Facebook</a></li>
-         <li><a href="https://twitter.com/intent/tweet?name=%20&url=http://#{ format }.json.is&text=Open-source%20documentation%20for%20#{ format }.json%20files.&via=EagerIO" target="_blank" class="share-icon-twitter">Twitter</a></li>
+         <li><a href="https://twitter.com/intent/tweet?name=%20&url=http%3A%2F%2F#{ format }.json.is&text=Open-source%20documentation%20for%20#{ format }.json%20files.&via=EagerIO" target="_blank" class="share-icon-twitter">Twitter</a></li>
          <li><a href="mailto:?subject=Open-source documentation for #{ format }.json files&body=Website: http://#{ format }.json.is" target="_blank" class="share-icon-email">Email</a></li>
        </ul>
     """
