@@ -525,9 +525,10 @@ html.json-is-home-page
   opacity 0
   animation tour-fade-in .5s ease forwards
   overflow hidden
+  display none
 
-  @media (max-width 770px)
-    display none
+  @media editorWithCodeOverlayMinWidthQuery
+    display block
 
   .tour-content
     position absolute
