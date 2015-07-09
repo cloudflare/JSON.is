@@ -163,6 +163,28 @@ processContext context
 
 setEditorOverlayContext()
 
+setUpTour = ->
+  return if window.localStorage?.hasRunTour
+
+  tour = document.createElement 'div'
+  tour.className = 'tour'
+  tour.innerHTML = """
+    <div class="tour-content">
+      <h1>Welcome to #{ format }.json.is.</h1>
+      <p class="abbutting">Below is a <strong>live text editor with interactive documentation</strong>.</p>
+      <p>As you edit the <code>#{ format }.json</code> file, contextual documentation will display to the right of the active line.</p>
+      <button class="more">Start coding</button>
+    </div>
+  """
+  document.body.appendChild tour
+
+  tour.addEventListener 'click', ->
+    tour.classList.add 'done'
+    window.localStorage?.hasRunTour = true
+    setTimeout -> editor.focus()
+
+setUpTour()
+
 setUpShare = ->
   _Drop = Drop.createContext
     classPrefix: 'share'

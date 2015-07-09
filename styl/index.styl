@@ -508,6 +508,121 @@ html.json-is-home-page
     a
       color #fff
 
+// Tour
+
+.tour
+  position fixed
+  z-index 20
+  top 0
+  right 0
+  bottom 0
+  left 0
+  background linear-gradient(rgba(#111, .95), rgba(#1f0514, .95))
+  text-shadow 0 1px #000
+  cursor pointer
+  opacity 0
+  animation tour-fade-in .5s ease forwards
+  overflow hidden
+
+  @media (max-width 770px)
+    display none
+
+  .tour-content
+    position absolute
+    left navigationWidth
+    padding 4em
+    width 37.5em
+    max-width 100%
+    opacity 0
+    transform translate3d(0, -10em, 0)
+    animation tour-content-fade-in .5s .5s ease forwards
+
+    @media editorWithCodeOverlayMaxWidthQuery
+      left smallNavigationWidth
+
+  &.done
+    opacity 1
+    animation tour-fade-out .5s .5s cubic-bezier(.75, 0, .75, .9) forwards
+    pointer-events none
+
+    .tour-content
+      opacity 1
+      transform translate3d(0, 0, 0)
+      animation tour-content-fade-out .8s cubic-bezier(.75, 0, .75, .9) forwards
+
+  h1
+    margin 0 0 1.25rem
+    font-size 2em
+    line-height 1em
+    font-weight 300
+    color #865d75
+
+  p
+    margin 0 0 1.5rem
+    font-size 1.1em
+    line-height 1.42em
+    font-weight 300
+    color #fff
+
+    &.abbutting
+      margin-bottom .5rem
+
+    em
+      margin-left .125em
+      margin-right .125em
+
+    code
+      font-family monospaceFonts
+      font-size 0.8em
+      display inline-block
+      vertical-align middle
+      margin 0 .0625em
+      position relative
+      top -1px
+      background rgba(#fff, .05)
+      padding 0 .45em
+
+  button
+    cursor pointer
+    border 0
+    font-size 1.5em
+    font-family inherit
+    padding .5em 1.1em
+    background rgba(#fff, .08)
+    color #fff
+    border-radius .1875rem
+
+    &:focus
+      outline none
+
+    &:hover
+      background rgba(#fff, .15)
+
+  &:active button, button:active
+    background rgba(#fff, .025)
+    color rgba(#fff, .6)
+
+@keyframes tour-fade-in
+  to
+    opacity 1
+
+@keyframes tour-content-fade-in
+  to
+    opacity 1
+    transform translate3d(0, 0, 0)
+
+@keyframes tour-fade-out
+  to
+    opacity 0
+
+@keyframes tour-content-fade-out
+  50%
+    opacity 0
+    transform translate3d(0, 6em, 0)
+  to
+    opacity 0
+    transform translate3d(0, 12em, 0)
+
 // Share
 
 @css {
