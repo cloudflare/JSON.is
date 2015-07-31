@@ -683,14 +683,9 @@ html.json-is-home-page
 
 .share.share-element {
   -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transition: opacity 360ms;
-  -moz-transition: opacity 360ms;
-  -o-transition: opacity 360ms;
-  transition: opacity 360ms;
+  -webkit-transition: opacity 500ms;
+  transition: opacity 500ms;
   opacity: 0.999;
   z-index: 10;
 }
@@ -705,8 +700,6 @@ html.json-is-home-page
 
   .share.share-element.share-after-open {
     -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
     transition: none;
     opacity: 1
   }
@@ -716,11 +709,11 @@ html.json-is-home-page
     position: relative
   }
 
-    .share.share-element .share-content a[class^="share-icon-"], .share.share-element .share-content a[class*=" share-icon-"] {
+    .share.share-element a[class^="share-icon-"], .share.share-element a[class*=" share-icon-"] {
       padding: 0 20px 0 75px /* 64px */
     }
 
-      .share.share-element .share-content a[class^="share-icon-"]:before, .share.share-element .share-content a[class*=" share-icon-"]:before {
+      .share.share-element a[class^="share-icon-"]:before, .share.share-element a[class*=" share-icon-"]:before {
         position: absolute;
         font-size: 24px;
         line-height: 30px;
@@ -734,15 +727,15 @@ html.json-is-home-page
         speak: none
       }
 
-      .share.share-element .share-content .share-icon-twitter:before {
+      .share.share-element .share-icon-twitter:before {
         color: #55acee
       }
 
-      .share.share-element .share-content .share-icon-facebook:before {
+      .share.share-element .share-icon-facebook:before {
         color: #3b5998
       }
 
-      .share.share-element .share-content .share-icon-email:before {
+      .share.share-element .share-icon-email:before {
         color: #efe6eb
       }
 
@@ -754,12 +747,12 @@ html.json-is-home-page
       padding: 0
     }
 
-      .share.share-element .share-content ul li {
+      .share.share-element li {
         position: relative;
         display: block
       }
 
-        .share.share-element .share-content ul li a {
+        .share.share-element li a {
           width: 100%;
           background: #2f1c27;
           color: rgba(255, 255, 255, .8);
@@ -773,9 +766,6 @@ html.json-is-home-page
           font-size: 1.1875em;
           font-weight: normal;
           -webkit-transform: translate3d(0, 0, 0);
-          -moz-transform: translate3d(0, 0, 0);
-          -ms-transform: translate3d(0, 0, 0);
-          -o-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0)
         }
 
@@ -784,160 +774,129 @@ html.json-is-home-page
             color: #fff
           }
 
-        .share.share-element .share-content ul li:nth-child(1) a {
-          -webkit-transform: translate3d(0, -60px, 0);
-          -moz-transform: translate3d(0, -60px, 0);
-          -ms-transform: translate3d(0, -60px, 0);
-          -o-transform: translate3d(0, -60px, 0);
-          transform: translate3d(0, -60px, 0);
-          -webkit-transition: -webkit-transform 240ms ease;
-          -webkit-transition-delay: 0ms;
-          -moz-transition: -moz-transform 240ms ease 0ms;
-          -o-transition: -o-transform 240ms ease 0ms;
-          transition: transform 240ms ease 0ms
-        }
+  .share-element li a {
+    -webkit-transition: -webkit-transform 300ms;
+    transition: transform 300ms;
+    -webkit-transition-timing-function: cubic-bezier(.75, 0, .75, .9); /* ease rotated 180deg */
+    transition-timing-function: cubic-bezier(.75, 0, .75, .9);
+  }
 
-        .share.share-element .share-content ul li:nth-child(2) a {
-          -webkit-transform: translate3d(0, -120px, 0);
-          -moz-transform: translate3d(0, -120px, 0);
-          -ms-transform: translate3d(0, -120px, 0);
-          -o-transform: translate3d(0, -120px, 0);
-          transform: translate3d(0, -120px, 0);
-          -webkit-transition: -webkit-transform 240ms ease;
-          -webkit-transition-delay: 60ms;
-          -moz-transition: -moz-transform 240ms ease 60ms;
-          -o-transition: -o-transform 240ms ease 60ms;
-          transition: transform 240ms ease 60ms
-        }
+    .share-element li:nth-child(1) a {
+      -webkit-transform: translate3d(0, -60px, 0);
+      transform: translate3d(0, -60px, 0);
+      -webkit-transition-delay: 0ms;
+      transition-delay: 0ms
+    }
 
-        .share.share-element .share-content ul li:nth-child(3) a {
-          -webkit-transform: translate3d(0, -180px, 0);
-          -moz-transform: translate3d(0, -180px, 0);
-          -ms-transform: translate3d(0, -180px, 0);
-          -o-transform: translate3d(0, -180px, 0);
-          transform: translate3d(0, -180px, 0);
-          -webkit-transition: -webkit-transform 240ms ease;
-          -webkit-transition-delay: 120ms;
-          -moz-transition: -moz-transform 240ms ease 120ms;
-          -o-transition: -o-transform 240ms ease 120ms;
-          transition: transform 240ms ease 120ms
-        }
+    .share-element li:nth-child(2) a {
+      -webkit-transform: translate3d(0, -120px, 0);
+      transform: translate3d(0, -120px, 0);
+      -webkit-transition-delay: 100ms;
+      transition-delay: 100ms
+    }
 
-  .share.share-element.share-after-open .share-content ul li:nth-child(1) a {
+    .share-element li:nth-child(3) a {
+      -webkit-transform: translate3d(0, -180px, 0);
+      transform: translate3d(0, -180px, 0);
+      -webkit-transition-delay: 200ms;
+      transition-delay: 200ms
+    }
+
+    .share-element li:nth-child(4) a {
+      -webkit-transform: translate3d(0, -240px, 0);
+      transform: translate3d(0, -240px, 0);
+      -webkit-transition-delay: 300ms;
+      transition-delay: 300ms
+    }
+
+    .share-element li:nth-child(5) a {
+      -webkit-transform: translate3d(0, -300px, 0);
+      transform: translate3d(0, -300px, 0);
+      -webkit-transition-delay: 400ms;
+      transition-delay: 400ms
+    }
+
+  .share-element.share-after-open li a {
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 120ms;
-    -moz-transition: -moz-transform 240ms ease 120ms;
-    -o-transition: -o-transform 240ms ease 120ms;
-    transition: transform 240ms ease 120ms
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease
   }
 
-  .share.share-element.share-after-open .share-content ul li:nth-child(2) a {
+    .share-element.share-after-open li:nth-last-child(1) a,
+    .share-element.share-element-attached-bottom li:nth-last-child(1) a {
+      -webkit-transition-delay: 0ms;
+      transition-delay: 0ms
+    }
+
+    .share-element.share-after-open li:nth-last-child(2) a,
+    .share-element.share-element-attached-bottom li:nth-last-child(2) a {
+      -webkit-transition-delay: 100ms;
+      transition-delay: 100ms
+    }
+
+    .share-element.share-after-open li:nth-last-child(3) a,
+    .share-element.share-element-attached-bottom li:nth-last-child(3) a {
+      -webkit-transition-delay: 200ms;
+      transition-delay: 200ms
+    }
+
+    .share-element.share-after-open li:nth-last-child(4) a,
+    .share-element.share-element-attached-bottom li:nth-last-child(4) a {
+      -webkit-transition-delay: 300ms;
+      transition-delay: 300ms
+    }
+
+    .share-element.share-after-open li:nth-last-child(5) a,
+    .share-element.share-element-attached-bottom li:nth-last-child(5) a {
+      -webkit-transition-delay: 400ms;
+      transition-delay: 400ms
+    }
+
+    .share-element.share-element-attached-bottom li:nth-last-child(1) a {
+      -webkit-transform: translate3d(0, 60px, 0);
+      transform: translate3d(0, 60px, 0)
+    }
+
+    .share-element.share-element-attached-bottom li:nth-last-child(2) a {
+      -webkit-transform: translate3d(0, 120px, 0);
+      transform: translate3d(0, 120px, 0)
+    }
+
+    .share-element.share-element-attached-bottom li:nth-last-child(3) a {
+      -webkit-transform: translate3d(0, 180px, 0);
+      transform: translate3d(0, 180px, 0)
+    }
+
+    .share-element.share-element-attached-bottom li:nth-last-child(4) a {
+      -webkit-transform: translate3d(0, 240px, 0);
+      transform: translate3d(0, 240px, 0)
+    }
+
+    .share-element.share-element-attached-bottom li:nth-last-child(5) a {
+      -webkit-transform: translate3d(0, 300px, 0);
+      transform: translate3d(0, 300px, 0)
+    }
+
+  .share-element.share-element-attached-bottom.share-after-open li a {
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 60ms;
-    -moz-transition: -moz-transform 240ms ease 60ms;
-    -o-transition: -o-transform 240ms ease 60ms;
-    transition: transform 240ms ease 60ms
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease
   }
 
-  .share.share-element.share-after-open .share-content ul li:nth-child(3) a {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 0ms;
-    -moz-transition: -moz-transform 240ms ease 0ms;
-    -o-transition: -o-transform 240ms ease 0ms;
-    transition: transform 240ms ease 0ms
-  }
+    .share-element.share-element-attached-bottom.share-after-open li:nth-child(1) a {
+      -webkit-transition-delay: 0ms;
+      transition-delay: 0ms
+    }
 
-  .share.share-element.share-element-attached-bottom .share-content ul li:nth-child(1) a {
-    -webkit-transform: translate3d(0, 180px, 0);
-    -moz-transform: translate3d(0, 180px, 0);
-    -ms-transform: translate3d(0, 180px, 0);
-    -o-transform: translate3d(0, 180px, 0);
-    transform: translate3d(0, 180px, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 120ms;
-    -moz-transition: -moz-transform 240ms ease 120ms;
-    -o-transition: -o-transform 240ms ease 120ms;
-    transition: transform 240ms ease 120ms
-  }
+    .share-element.share-element-attached-bottom.share-after-open li:nth-child(2) a {
+      -webkit-transition-delay: 100ms;
+      transition-delay: 100ms
+    }
 
-  .share.share-element.share-element-attached-bottom .share-content ul li:nth-child(2) a {
-    -webkit-transform: translate3d(0, 120px, 0);
-    -moz-transform: translate3d(0, 120px, 0);
-    -ms-transform: translate3d(0, 120px, 0);
-    -o-transform: translate3d(0, 120px, 0);
-    transform: translate3d(0, 120px, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 60ms;
-    -moz-transition: -moz-transform 240ms ease 60ms;
-    -o-transition: -o-transform 240ms ease 60ms;
-    transition: transform 240ms ease 60ms
-  }
-
-  .share.share-element.share-element-attached-bottom .share-content ul li:nth-child(3) a {
-    -webkit-transform: translate3d(0, 60px, 0);
-    -moz-transform: translate3d(0, 60px, 0);
-    -ms-transform: translate3d(0, 60px, 0);
-    -o-transform: translate3d(0, 60px, 0);
-    transform: translate3d(0, 60px, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 0ms;
-    -moz-transition: -moz-transform 240ms ease 0ms;
-    -o-transition: -o-transform 240ms ease 0ms;
-    transition: transform 240ms ease 0ms
-  }
-
-  .share.share-element.share-element-attached-bottom.share-after-open .share-content ul li:nth-child(1) a {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 0ms;
-    -moz-transition: -moz-transform 240ms ease 0ms;
-    -o-transition: -o-transform 240ms ease 0ms;
-    transition: transform 240ms ease 0ms
-  }
-
-  .share.share-element.share-element-attached-bottom.share-after-open .share-content ul li:nth-child(2) a {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 60ms;
-    -moz-transition: -moz-transform 240ms ease 60ms;
-    -o-transition: -o-transform 240ms ease 60ms;
-    transition: transform 240ms ease 60ms
-  }
-
-  .share.share-element.share-element-attached-bottom.share-after-open .share-content ul li:nth-child(3) a {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 240ms ease;
-    -webkit-transition-delay: 120ms;
-    -moz-transition: -moz-transform 240ms ease 120ms;
-    -o-transition: -o-transform 240ms ease 120ms;
-    transition: transform 240ms ease 120ms
-  }
-
+    .share-element.share-element-attached-bottom.share-after-open li:nth-child(3) a {
+      -webkit-transition-delay: 200ms;
+      transition-delay: 200ms
+    }
 }
