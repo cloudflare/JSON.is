@@ -7,6 +7,6 @@
     "node_modules/"
   ],
   "devDependencies": {
-    "ui": "git@github.com:EagerIO/ui.git#master"
+    "ui": "git@github.com:EagerIO/ui.git#9eea86e61ce2b62a222194e1d3adf928b1bdb54c"
   }
 }
