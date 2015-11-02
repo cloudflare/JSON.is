@@ -310,4 +310,53 @@ context =
     }</code></pre>
   '''
 
+  'preview(\.handlers(\.INDEX)?)?': '''
+    <h4>Preview</h4>
+
+    <p><em>Optional</em></p>
+
+    <p>The preview section contains special options to configure the preview tool. The only current option inside preview is <code>handlers</code>
+    which is used to execute code when preview options are changed, rather than reloading the entire page being previewed.</p>
+
+    <pre><code>"preview": {
+      "handlers": [
+        {
+          "options": ["*"],
+          "execute": "EagerAddMarkdown.setOptions(INSTALL_OPTIONS)",
+          "reload": false
+        }
+      ]
+    }</code></pre>
+  '''
+
+  'preview\.handlers\.INDEX\.options': '''
+    <h4>Preview Handler Options</h4>
+
+    <p>Options is an array of property keys which this handler should be applied to.  You may use <code>*</code> to represent
+    'any property.</p>
+  '''
+
+  'preview\.handlers\.INDEX\.execute': '''
+    <h4>Preview Handler Execute</h4>
+
+    <p>The <code>execute</code> block specifies a block of JavaScript code which should be executed on the target page when one of the properties
+    listed in <code>options</code> is changed.</p>
+  '''
+
+  'preview\.handlers\.INDEX\.reload': '''
+    <h4>Preview Handler Reload</h4>
+
+    <p>The <code>reload</code> boolean instructs the preview to not reload when any of the properties listed in <code>options</code> is changed.</p>
+  '''
+
+  'hooks(\..*)?': '''
+    <h4>Hooks</h4>
+
+    <p>Hooks allow you to communicate between the install process and your backend services.  Using hooks you can be notified when a user
+    does various actions like beginning a preview or changing an option.  You can even alter the installation process based on these values
+    to create powerful dynamic install experiences.</p>
+
+    <p>See the <a href="https://github.com/EagerIO/DeveloperDocs/blob/master/docs/hooks.md">Hooks Documentation</a> for more details.</p>
+  '''
+
 module.exports = context
