@@ -419,6 +419,9 @@ html.json-is-home-page
     align-items center
     justify-content center
 
+    @media (max-width 65em)
+      display block
+
   header a
     color #fff
 
@@ -428,20 +431,20 @@ html.json-is-home-page
     max-width 80em
     margin-left auto
     margin-right auto
-    display flex
+    display block
     list-style none
     padding 0
     perspective 1000px
 
+    @media (min-width 110em)
+      max-width 100em
+
     > *:hover
-      -webkit-transform translate3d(0, 0, -1.2rem)
-      -moz-transform translate3d(0, 0, -1.2rem)
-      -o-transform translate3d(0, 0, -1.2rem)
-      -ms-transform translate3d(0, 0, -1.2rem)
       transform translate3d(0, 0, -1.2rem)
 
-    @media (max-width 50em)
+    @media (max-width 65em)
       display block
+      max-width 100%
 
     > li
       flex 1
@@ -449,7 +452,20 @@ html.json-is-home-page
       transition transform .3s
       display inline-block
       perspective 100rem
+      width 25em
       max-width 100%
+
+      @media (min-width 110em)
+        width 30em
+
+      @media (max-width 65em)
+        display block
+        margin-left auto
+        margin-right auto
+        width 80%
+
+      @media (max-width 40em)
+        width 100%
 
       > a
         display block
@@ -458,12 +474,6 @@ html.json-is-home-page
         user-select none
         transition color .13s ease, background-color .13s ease, transform .3s
         perspective 100rem
-
-        > div
-          border-radius 3px
-          padding-top 2em
-          background rgba(#fff, .06)
-          transition background-color .13s ease
 
         &:hover
           color #000
@@ -474,8 +484,11 @@ html.json-is-home-page
         > div
           display block
           height 20em
-          width 100%
           overflow hidden
+          border-radius 3px
+          padding-top 2em
+          background rgba(#fff, .06)
+          transition background-color .13s ease
 
           > button.more.title
             position relative
