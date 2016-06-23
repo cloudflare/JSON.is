@@ -7,14 +7,13 @@ dependencies:
     - "~/nvm/v0.10.26/lib/node_modules"
     - "~/nvm/v0.10.26/lib/bin"
     - "~/.npm"
+    - "cache"
 
   post:
     - npm install -g gulp@3.6.2 bower@1.3.8
     - bower install
     - gulp build
-    - go get github.com/tools/godep
-    - git clone git@github.com:EagerIO/Stout.git
-    - cd Stout; godep go build -o ../stout src/*
+    - curl https://s3.amazonaws.com/stout-builds/install | sh
 
 test:
   override:
@@ -24,7 +23,7 @@ deployment:
   production:
     branch: master
     commands:
-      - ./stout deploy --env root --key $ROOT_AWS_ACCESS_KEY --secret $ROOT_AWS_SECRET_KEY
-      - ./stout deploy --env install --key $INSTALL_AWS_ACCESS_KEY --secret $INSTALL_AWS_SECRET_KEY
-      - ./stout deploy --env package --key $PACKAGE_AWS_ACCESS_KEY --secret $PACKAGE_AWS_SECRET_KEY
-      - ./stout deploy --env bower --key $BOWER_AWS_ACCESS_KEY --secret $BOWER_AWS_SECRET_KEY
+      - stout deploy --env root --key $ROOT_AWS_ACCESS_KEY --secret $ROOT_AWS_SECRET_KEY
+      - stout deploy --env install --key $INSTALL_AWS_ACCESS_KEY --secret $INSTALL_AWS_SECRET_KEY
+      - stout deploy --env package --key $PACKAGE_AWS_ACCESS_KEY --secret $PACKAGE_AWS_SECRET_KEY
+      - stout deploy --env bower --key $BOWER_AWS_ACCESS_KEY --secret $BOWER_AWS_SECRET_KEY
