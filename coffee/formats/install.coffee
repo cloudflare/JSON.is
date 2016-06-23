@@ -117,7 +117,7 @@ context =
 
     <p>Container options are arrays and objects which can nest other primitive and container options recursively.</p>
 
-    <p><a class="more" target="_blank" href="https://github.com/EagerIO/DeveloperDocs/blob/master/docs/adding-your-app.md#install-json">Learn more about install.json options</a></p>
+    <p><a class="more" target="_blank" href="https://eager.io/developer/docs/install-json/options">Learn more about install.json options</a></p>
   '''
 
   'options\.properties(\.PROPERTY)?': '''
@@ -356,7 +356,7 @@ context =
     does various actions like beginning a preview or changing an option.  You can even alter the installation process based on these values
     to create powerful dynamic install experiences.</p>
 
-    <p>See the <a href="https://github.com/EagerIO/DeveloperDocs/blob/master/docs/hooks.md">Hooks Documentation</a> for more details.</p>
+    <p><a class="more" target="_blank" href="https://eager.io/developer/docs/install-json/hooks">Learn more about Eager hooks</a></p>
   '''
 
 module.exports = context
