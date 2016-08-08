@@ -290,7 +290,7 @@ context =
 
     <p>Dev dependencies work exactly as <code>dependencies</code>, but they are not installed when a user installs your package without downloading the source (unless they provide the <code>--dev</code> option).</p>
 
-    <p>It often makes sense to include build and test tools as dev dependencies, so end users don’t have to install them if their not required to use the package.</p>
+    <p>It often makes sense to include build and test tools as dev dependencies, so end users don’t have to install them if they aren't required to use the package.</p>
   ''' + depInfo('devDependencies')
 
   'peerDependencies': '''
