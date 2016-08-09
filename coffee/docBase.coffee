@@ -164,7 +164,7 @@ processContext context
 setEditorOverlayContext()
 
 setUpTour = ->
-  return if window.localStorage?.hasRunTour
+  return if document.cookie.match(/hide-tour/)
 
   tour = document.createElement 'div'
   tour.className = 'tour'
@@ -180,7 +180,7 @@ setUpTour = ->
 
   tour.addEventListener 'click', ->
     tour.classList.add 'done'
-    window.localStorage?.hasRunTour = true
+    document.cookie = "hide-tour=1; domain=json.is"
     setTimeout -> editor.focus()
 
 setUpTour()
