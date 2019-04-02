@@ -165,7 +165,7 @@ context =
   'private': '''
     <h4>Private</h4>
 
-    <p>Set to <code>true</code> if you do not wish this project to ever be published publically.
+    <p>Set to <code>true</code> if you do not wish this project to ever be published publicly.
   '''
 
 module.exports = context
